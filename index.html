@@ -142,6 +142,8 @@
       </div>
     </header>
     <div class="container">
+    <div class="container_cart">
+        <div class="container_items">
       <div class="cart">
         <h1 class="heading_1">Корзина</h1>
         <div id="accordion" class="accordion">
@@ -387,53 +389,56 @@
             </div>
           </div>
         </div>
-
+    </div>
+</div>
         <div class="delivery-method">
           <div class="delivery-method__heading">
             <h2 class="heading_2">Способ доставки</h2>
             <span class="text_magenta">Изменить</span>
           </div>
-          <table class="delivery-method__table">
-            <tr>
-              <td>Пункт выдачи</td>
-              <td>
-                <p>Бишкек, улица Ахматбека Суюмбаева, 12/1</p>
-                <p>
-                  <img src="assets/star.svg" alt="Rating" />4.99 Ежедневно с 10
-                  до 21
-                </p>
-              </td>
-            </tr>
-            <tr>
-              <td>Стоимость доставки</td>
-              <td>Бесплатно</td>
-            </tr>
-            <tr>
-              <td>5—6 февраля</td>
-              <td>
-                <div class="delivery-method__table_image">
-                  <img src="assets/item1.png" />
-                </div>
-                <div class="delivery-method__table_image">
-                  <img src="assets/item2.png" />
-                  <div class="delivery-method__table_count">184</div>
-                </div>
-                <div class="delivery-method__table_image">
-                  <img src="assets/item3.png" />
-                  <div class="delivery-method__table_count">2</div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>7—8 февраля</td>
-              <td>
-                <div class="delivery-method__table_image">
-                  <img src="assets/item2.png" />
-                  <div class="delivery-method__table_count">2</div>
-                </div>
-              </td>
-            </tr>
-          </table>
+          <div class="delivery-method__row">
+            <div class="delivery-method__col-30">
+              <p>Пункт выдачи</p>
+            </div>
+            <div class="delivery-method__col-70">
+              <p>Бишкек, улица Ахматбека Суюмбаева, 12/1</p>
+              <p class="text-small">
+                <img src="assets/star.svg" alt="Rating" />4.99 Ежедневно с 10 до
+                21
+              </p>
+            </div>
+            <div class="delivery-method__col-30">
+              <p>Стоимость доставки</p>
+            </div>
+            <div class="delivery-method__col-70">
+              <p>Бесплатно</p>
+            </div>
+            <div class="delivery-method__col-30">
+              <p>5—6 февраля</p>
+            </div>
+            <div class="delivery-method__col-70">
+              <div class="delivery-method__col-70_image">
+                <img src="assets/item1.png" />
+              </div>
+              <div class="delivery-method__col-70_image">
+                <img src="assets/item2.png" />
+                <div class="delivery-method__col-70_count">184</div>
+              </div>
+              <div class="delivery-method__col-70_image">
+                <img src="assets/item3.png" />
+                <div class="delivery-method__col-70_count">2</div>
+              </div>
+            </div>
+            <div class="delivery-method__col-30">
+              <p>7—8 февраля</p>
+            </div>
+            <div class="delivery-method__col-70">
+              <div class="delivery-method__col-70_image">
+                <img src="assets/item2.png" />
+                <div class="delivery-method__col-70_count">16</div>
+              </div>
+            </div>
+          </div>
           <div class="delivery-method__price-shipping">
             <img
               src="assets/price shipping.svg"
@@ -446,10 +451,11 @@
             >
           </div>
         </div>
-      </div>
+    </div>
       <div class="total">
         <h2 class="heading_2">Итого</h2>
       </div>
+    
     </div>
     <script>
       new ItcAccordion(document.querySelector(".accordion"), {
