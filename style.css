@@ -399,6 +399,37 @@ body {
 .delivery-method__price-shipping_free {
   color: #0cb477;
 }
+.payment-method {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px 24px 24px 24px;
+  margin-top: 24px;
+}
+.payment-method__heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.payment-method__cards {
+  padding-top: 8px;
+}
+.payment-method__card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+}
+.payment-method__image {
+  width: 32px;
+  height: 24px;
+  background: #f6f6fa;
+  border-radius: 4px;
+}
+.text-grey {
+  font-size: 13px;
+  line-height: 16px;
+  color: #a0a0a4;
+}
 @media screen and (max-width: 960px) {
   .container {
     padding: 0;
@@ -407,7 +438,7 @@ body {
   .container_items {
     padding: 15px 16px;
   }
-  .container_cart{
+  .container_cart {
     width: 100%;
   }
   .total {
