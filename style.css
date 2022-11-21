@@ -128,7 +128,7 @@ body {
 .total {
   width: 34%;
   background: #ffffff;
-  padding: 16px 24px 24px;
+  padding: 16px 24px 24px 24px;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15), 0px 0px 1px rgba(0, 0, 0, 0.3);
   border-radius: 16px;
 }
@@ -261,7 +261,9 @@ body {
   line-height: 16px;
   color: #a0a0a4;
 }
-
+.item-operations {
+  min-width: 100px;
+}
 .item-operations__form_counter {
   background: #ffffff;
   border-radius: 8px;
@@ -317,7 +319,67 @@ body {
   text-decoration: line-through;
   border-bottom: 1.2px dashed #a0a0a4;
 }
-@media screen and (max-width: 992px) {
+.delivery-method {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px 24px 24px 24px;
+  margin-top: 24px;
+}
+.delivery-method__heading {
+  display: flex;
+  justify-content: space-between;
+}
+.text_magenta {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #cb11ab;
+}
+.delivery-method__table {
+  width: 100%;
+}
+.delivery-method__table tr td {
+  padding: 8px 0;
+}
+.delivery-method__table tr td:first-child {
+  width: 30%;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+}
+.delivery-method__table tr td p:last-child {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+}
+.delivery-method__table tr td img {
+  max-height: 56px;
+}
+.delivery-method__table_image {
+  display: inline-block;
+  position: relative;
+}
+.delivery-method__table_count {
+  position: absolute;
+  top: -8px;
+  right: -4px;
+  background: #f55123;
+  border-radius: 16px;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 18px;
+  padding: 0px 6px;
+}
+.delivery-method__price-shipping{
+    display: flex;
+    gap: 9px;
+}
+
+.delivery-method__price-shipping_free{
+    color: #0CB477;
+}
+@media screen and (max-width: 960px) {
   .container {
     padding: 15px 16px;
     flex-direction: column;
