@@ -8,13 +8,109 @@
     <title>Корзина</title>
   </head>
   <body>
+    <script>
+      class ItcAccordion {
+        constructor(target, config) {
+          this._el =
+            typeof target === "string"
+              ? document.querySelector(target)
+              : target;
+          const defaultConfig = {
+            alwaysOpen: true,
+            duration: 350,
+          };
+          this._config = Object.assign(defaultConfig, config);
+          this.addEventListener();
+        }
+        addEventListener() {
+          this._el.addEventListener("click", (e) => {
+            const elHeader = e.target.closest(".accordion__header");
+            if (
+              !elHeader ||
+              e.target.tagName === "INPUT" ||
+              e.target.tagName === "LABEL"
+            ) {
+              return;
+            }
+            if (!this._config.alwaysOpen) {
+              const elOpenItem = this._el.querySelector(
+                ".accordion__item_show"
+              );
+              if (elOpenItem) {
+                elOpenItem !== elHeader.parentElement
+                  ? this.toggle(elOpenItem)
+                  : null;
+              }
+            }
+            this.toggle(elHeader.parentElement);
+          });
+        }
+        show(el) {
+          const elBody = el.querySelector(".accordion__body");
+          if (
+            elBody.classList.contains("collapsing") ||
+            el.classList.contains("accordion__item_show")
+          ) {
+            return;
+          }
+          elBody.style["display"] = "block";
+          const height = elBody.offsetHeight;
+          elBody.style["height"] = 0;
+          elBody.style["overflow"] = "hidden";
+          elBody.style["transition"] = `height ${this._config.duration}ms ease`;
+          elBody.classList.add("collapsing");
+          el.classList.add("accordion__item_slidedown");
+          elBody.offsetHeight;
+          elBody.style["height"] = `${height}px`;
+          window.setTimeout(() => {
+            elBody.classList.remove("collapsing");
+            el.classList.remove("accordion__item_slidedown");
+            elBody.classList.add("collapse");
+            el.classList.add("accordion__item_show");
+            elBody.style["display"] = "";
+            elBody.style["height"] = "";
+            elBody.style["transition"] = "";
+            elBody.style["overflow"] = "";
+          }, this._config.duration);
+        }
+        hide(el) {
+          const elBody = el.querySelector(".accordion__body");
+          if (
+            elBody.classList.contains("collapsing") ||
+            !el.classList.contains("accordion__item_show")
+          ) {
+            return;
+          }
+          elBody.style["height"] = `${elBody.offsetHeight}px`;
+          elBody.offsetHeight;
+          elBody.style["display"] = "block";
+          elBody.style["height"] = 0;
+          elBody.style["overflow"] = "hidden";
+          elBody.style["transition"] = `height ${this._config.duration}ms ease`;
+          elBody.classList.remove("collapse");
+          el.classList.remove("accordion__item_show");
+          elBody.classList.add("collapsing");
+          window.setTimeout(() => {
+            elBody.classList.remove("collapsing");
+            elBody.classList.add("collapse");
+            elBody.style["display"] = "";
+            elBody.style["height"] = "";
+            elBody.style["transition"] = "";
+            elBody.style["overflow"] = "";
+          }, this._config.duration);
+        }
+        toggle(el) {
+          el.classList.contains("accordion__item_show")
+            ? this.hide(el)
+            : this.show(el);
+        }
+      }
+    </script>
     <header class="header">
-        <div class="navigation">
-      <button class="navigation__button-catalog">
-        <img src="assets/button-catalog.svg" alt="Button catalog" />
-      </button>
-      <div class="navigation__logo"><span>товары и&#160;точка</span></div>
-    </div>
+      <div class="navigation">
+        <button class="navigation__button-catalog"></button>
+        <div class="navigation__logo"><span>товары и&#160;точка</span></div>
+      </div>
       <form class="search-form">
         <input
           class="search-form__input"
@@ -27,17 +123,17 @@
       </form>
       <div class="menu-links">
         <div class="menu-links__link">
-            <a href="#">
-                <img src="assets/profile.svg" alt="Link profile" />
-              </a>
-              <a href="#">
-                <span>Профиль</span>
-              </a>
+          <a href="#">
+            <img src="assets/profile.svg" alt="Link profile" />
+          </a>
+          <a href="#">
+            <span>Профиль</span>
+          </a>
         </div>
         <div class="menu-links__link">
           <a href="#">
             <img src="assets/cart.svg" alt="Link cart" />
-            <span class="menu-links__count">3</span >
+            <span class="menu-links__count">3</span>
           </a>
           <a href="#">
             <span>Корзина</span>
@@ -45,5 +141,267 @@
         </div>
       </div>
     </header>
+    <div class="container">
+      <div class="cart">
+        <h1 class="heading_1">Корзина</h1>
+        <div id="accordion" class="accordion">
+          <div class="accordion__item accordion__item_show">
+            <div class="accordion__header">
+              <input
+                type="checkbox"
+                class="checkbox"
+                id="select_all"
+                name="select_all"
+                value="true"
+              />
+              <label for="select_all">Выбрать все</label>
+            </div>
+            <div class="accordion__body">
+              <div class="accordion__content">
+                <div class="card-item">
+                  <input
+                    type="checkbox"
+                    class="checkbox"
+                    id="item1"
+                    name="item1"
+                    value="1"
+                  />
+                  <label for="item1"></label>
+                  <div class="card-item__image">
+                    <img src="assets/item1.png" alt="Item photo" />
+                    <span class="card-item__size_for-mobile">56</span>
+                  </div>
+                  <div class="card-item__text">
+                    <div class="item-price_for-mobile">
+                      <span class="item-price__discount">522 сом</span>
+                      <span class="item-price__nodiscount">1051 сом</span>
+                    </div>
+                    <span class="card-item__title"
+                      >Футболка UZcotton мужская</span
+                    >
+                    <div class="card-item__params">
+                      <span>Цвет: белый</span>
+                      <span class="card-item__size">Размер: 56</span>
+                    </div>
+
+                    <span class="card-item__geo">Коледино WB</span>
+                    <span class="card-item__seller">OOO Вайлдберриз</span>
+                  </div>
+                </div>
+                <div class="item-operations">
+                  <div class="item-operations__form">
+                    <div class="item-operations__form_counter">
+                      <input type="button" value="-" id="button_minus" />
+                      <input type="number" id="num_count" name="quantity" />
+
+                      <input type="button" value="+" id="button_plus" />
+                    </div>
+                    <p class="item-operations__warning">Осталось 2 шт.</p>
+                  </div>
+                  <div class="item-operations__buttons">
+                    <img src="assets/heart.svg" alt="To favorits" />
+                    <img src="assets/delete_cart.svg" alt="Delete item" />
+                  </div>
+                </div>
+                <div class="item-price">
+                  <div class="item-price__discount"><span>522 сом</span></div>
+                  <div class="item-price__nodiscount">
+                    <span>1051 сом</span>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion__content">
+                <div class="card-item">
+                  <input
+                    type="checkbox"
+                    class="checkbox"
+                    id="item2"
+                    name="item2"
+                    value="2"
+                  />
+                  <label for="item2"></label>
+                  <div class="card-item__image">
+                    <img src="assets/item2.png" alt="Item photo" />
+                  </div>
+                  <div class="card-item__text">
+                    <div class="item-price_for-mobile">
+                      <span class="item-price__discount">2 100 047 сом</span>
+                      <span class="item-price__nodiscount">2 300 047 сом</span>
+                    </div>
+                    <span class="card-item__title"
+                      >Силиконовый чехол картхолдер (отверстия) для карт,
+                      прозрачный кейс бампер на Apple iPhone XR, MobiSafe</span
+                    >
+                    <div class="card-item__params">
+                      <span>Цвет: прозрачный</span>
+                    </div>
+
+                    <span class="card-item__geo">Коледино WB</span>
+                    <span class="card-item__seller">OOO Мегапрофстиль</span>
+                  </div>
+                </div>
+                <div class="item-operations">
+                  <div class="item-operations__form">
+                    <div class="item-operations__form_counter">
+                      <input type="button" value="-" id="button_minus" />
+                      <input type="number" id="num_count" name="quantity" />
+
+                      <input type="button" value="+" id="button_plus" />
+                    </div>
+                  </div>
+                  <div class="item-operations__buttons">
+                    <img src="assets/heart.svg" alt="To favorits" />
+                    <img src="assets/delete_cart.svg" alt="Delete item" />
+                  </div>
+                </div>
+                <div class="item-price">
+                  <div class="item-price__discount">
+                    <span>2 100 047 сом</span>
+                  </div>
+                  <div class="item-price__nodiscount">
+                    <span>2 300 047 сом</span>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion__content">
+                <div class="card-item">
+                  <input
+                    type="checkbox"
+                    class="checkbox"
+                    id="item3"
+                    name="item3"
+                    value="3"
+                  />
+                  <label for="item3"></label>
+                  <div class="card-item__image">
+                    <img src="assets/item3.png" alt="Item photo" />
+                  </div>
+                  <div class="card-item__text">
+                    <div class="item-price_for-mobile">
+                      <span class="item-price__discount">494 сом</span>
+                      <span class="item-price__nodiscount">950 сом</span>
+                    </div>
+                    <span class="card-item__title"
+                      >Карандаши цветные Faber-Castell "Замок", набор 24 цвета,
+                      заточенные, шестигранные, Faber-Castell
+                    </span>
+                    <div class="card-item__params"></div>
+
+                    <span class="card-item__geo">Коледино WB</span>
+                    <span class="card-item__seller">OOO Вайлдберриз</span>
+                  </div>
+                </div>
+                <div class="item-operations">
+                  <div class="item-operations__form">
+                    <div class="item-operations__form_counter">
+                      <input type="button" value="-" id="button_minus" />
+                      <input type="number" id="num_count" name="quantity" />
+
+                      <input type="button" value="+" id="button_plus" />
+                    </div>
+                    <p class="item-operations__warning">Осталось 2 шт.</p>
+                  </div>
+                  <div class="item-operations__buttons">
+                    <img src="assets/heart.svg" alt="To favorits" />
+                    <img src="assets/delete_cart.svg" alt="Delete item" />
+                  </div>
+                </div>
+                <div class="item-price">
+                  <div class="item-price__discount"><span>494 сом</span></div>
+                  <div class="item-price__nodiscount"><span>950 сом</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion__item accordion__item_show">
+            <div class="accordion__header">
+                Отсутствуют · 3 товара
+            </div>
+            <div class="accordion__body">
+              <div class="accordion__content">
+                <div class="card-item">
+                  <div class="card-item__image card-item__image-absent">
+                    <img src="assets/item1.png" alt="Item photo" />
+                    <span class="card-item__size_for-mobile">56</span>
+                  </div>
+                  <div class="card-item__text card-item__text-absent">
+                    <span class="card-item__title"
+                      >Футболка UZcotton мужская</span
+                    >
+                    <div class="card-item__params">
+                      <span>Цвет: белый</span>
+                      <span class="card-item__size">Размер: 56</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="item-operations">
+                  <div class="item-operations__form">
+                  </div>
+                  <div class="item-operations__buttons">
+                    <img src="assets/heart.svg" alt="To favorits" />
+                    <img src="assets/delete_cart.svg" alt="Delete item" />
+                  </div>
+                </div>
+              </div>
+              <div class="accordion__content">
+                <div class="card-item">
+                  <div class="card-item__image card-item__image-absent">
+                    <img src="assets/item2.png" alt="Item photo" />
+                  </div>
+                  <div class="card-item__text card-item__text-absent">
+                    <span class="card-item__title"
+                      >Силиконовый чехол картхолдер (отверстия) для карт, прозрачный кейс бампер на Apple iPhone XR, MobiSafe</span
+                    >
+                    <div class="card-item__params">
+                      <span>Цвет: прозрачный</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="item-operations">
+                  <div class="item-operations__form">
+                  </div>
+                  <div class="item-operations__buttons">
+                    <img src="assets/heart.svg" alt="To favorits" />
+                    <img src="assets/delete_cart.svg" alt="Delete item" />
+                  </div>
+                </div>
+              </div>
+              <div class="accordion__content">
+                <div class="card-item">
+                  <div class="card-item__image card-item__image-absent">
+                    <img src="assets/item3.png" alt="Item photo" />
+                  </div>
+                  <div class="card-item__text card-item__text-absent">
+                    <span class="card-item__title"
+                      >Карандаши цветные Faber-Castell "Замок", набор 24 цвета, заточенные, шестигранные, Faber-Castell </span
+                    >
+                    <div class="card-item__params">
+                    </div>
+                  </div>
+                </div>
+                <div class="item-operations">
+                  <div class="item-operations__form">
+                  </div>
+                  <div class="item-operations__buttons">
+                    <img src="assets/heart.svg" alt="To favorits" />
+                    <img src="assets/delete_cart.svg" alt="Delete item" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+      </div>
+      <div class="total">
+        <h1 class="heading_2">Итого</h1>
+      </div>
+    </div>
+    <script>
+      new ItcAccordion(document.querySelector(".accordion"), {
+        alwaysOpen: true,
+      });
+    </script>
   </body>
 </html>
