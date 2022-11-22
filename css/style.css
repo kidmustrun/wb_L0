@@ -40,7 +40,7 @@ body {
   padding: 12px 10px;
   text-align: center;
   cursor: pointer;
-  background: url("assets/button-catalog.svg") no-repeat center center;
+  background: url("../assets/button-catalog.svg") no-repeat center center;
 }
 .navigation__logo {
   font-weight: 600;
@@ -164,11 +164,7 @@ body {
   align-items: center;
   user-select: none;
 }
-.checkbox + label.with_link {
-  display: inline;
-  vertical-align: middle;
-  user-select: none;
-}
+
 .checkbox + label::before {
   content: "";
   display: inline-flex;
@@ -184,19 +180,7 @@ body {
   background-position: center center;
   background-size: 50% 50%;
 }
-.checkbox + label.with_link::before {
-  content: "";
-  width: 1em;
-  height: 1em;
-  border: 1px solid #adb5bd;
-  border-radius: 0.25em;
-  margin-right: 16px;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 50% 50%;
-  display: inline-block;
-  vertical-align: middle;
-}
+
 .checkbox:checked + label::before {
   border-color: #cb11ab;
   background-color: #cb11ab;
@@ -737,7 +721,7 @@ body {
   }
   .navigation__button-catalog {
     border: none;
-    background: url("assets/button-catalog_mobile.svg") no-repeat center center;
+    background: url("../assets/button-catalog_mobile.svg") no-repeat center center;
   }
   .search-form {
     background: transparent;
