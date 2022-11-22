@@ -430,6 +430,81 @@ body {
   line-height: 16px;
   color: #a0a0a4;
 }
+.recipient {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px 24px 24px 24px;
+  margin-top: 24px;
+}
+.recipient__heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.recipient__container {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.recipient__form {
+  position: relative;
+}
+.recipient__input {
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  background-color: transparent;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  margin-right: 24px;
+  margin-top: 37px;
+  width: calc(100% - 24px);
+}
+.recipient__form:nth-child(1) {
+  width: 50%;
+}
+.recipient__form:nth-child(2) {
+  width: 50%;
+}
+.recipient__form:nth-child(3) {
+  width: 33%;
+}
+.recipient__form:nth-child(4) {
+  width: 33%;
+}
+.recipient__form:nth-child(5) {
+  width: 33%;
+}
+.recipient__input:focus {
+  outline: none;
+}
+.recipient__input:focus ~ .floating-label,
+.recipient__input:not(:focus):valid ~ .floating-label {
+  top: 8px;
+  bottom: 10px;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  opacity: 1;
+  color: #a0a0a4;
+}
+
+.floating-label {
+  position: absolute;
+  pointer-events: none;
+  top: 34px;
+  left: 0;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  transition: 0.2s ease all;
+  color: #a0a0a4;
+}
+.input-subscription {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+}
 @media screen and (max-width: 960px) {
   .container {
     padding: 0;
@@ -583,5 +658,8 @@ body {
   }
   .delivery-method__col-70_count {
     top: 4px;
+  }
+  .recipient__form {
+    width: 100% !important;
   }
 }
