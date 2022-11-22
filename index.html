@@ -484,64 +484,142 @@
             <h2 class="heading_2">Получатель</h2>
           </div>
           <div class="recipient__container">
-          <div class="recipient__form">
-            <input
-              class="recipient__input"
-              type="text"
-              id="name"
-              required
-            />
-            
-            
-            <span class="floating-label">Имя</span>
-          </div>
             <div class="recipient__form">
-            <input
-              class="recipient__input"
-              type="text"
-              id="surname"
-              required
-            />
-            <span class="floating-label">Фамилия</span>
+              <input class="recipient__input" type="text" id="name" required />
+
+              <span class="floating-label">Имя</span>
             </div>
             <div class="recipient__form">
-            <input
-              class="recipient__input"
-              type="email"
-              id="email"
-              required
-            />
-            <span class="floating-label">Почта</span>
+              <input
+                class="recipient__input"
+                type="text"
+                id="surname"
+                required
+              />
+              <span class="floating-label">Фамилия</span>
             </div>
             <div class="recipient__form">
-            <input
-              class="recipient__input"
-              type="tel"
-              id="phone"
-              name="phone"
-              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-              required
-            />
-            <span class="floating-label">Телефон</span>
-          </div>
-          <div class="recipient__form">
-            <input
-              class="recipient__input"
-              type="text"
-              id="inn"
-              required
-            />
-            <span class="floating-label">ИНН</span>
-            <span class="input-subscription">Для таможенного оформления</span>
+              <input
+                class="recipient__input"
+                type="email"
+                id="email"
+                required
+              />
+              <span class="floating-label">Почта</span>
+            </div>
+            <div class="recipient__form">
+              <input
+                class="recipient__input"
+                type="tel"
+                id="phone"
+                name="phone"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                required
+              />
+              <span class="floating-label">Телефон</span>
+            </div>
+            <div class="recipient__form">
+              <input class="recipient__input" type="text" id="inn" required />
+              <span class="floating-label">ИНН</span>
+              <span class="input-subscription">Для таможенного оформления</span>
             </div>
           </div>
         </div>
-        </div>
-      
+      </div>
+
       <div class="total">
-        <h2 class="heading_2">Итого</h2>
+        <table class="total__table">
+          <tr>
+            <td><h2 class="heading_2">Итого</h2></td>
+            <td><h2 class="heading_2">2 101 063 сом</h2></td>
+          </tr>
+          <tr>
+            <td><span>4 товара</span></td>
+            <td><span>2 302 048 сом</span></td>
+          </tr>
+          <tr>
+            <td><span>Скидка</span></td>
+            <td><span>−200 985 сом</span></td>
+          </tr>
+          <tr>
+            <td><span>Доставка</span></td>
+            <td><span>Бесплатно</span></td>
+          </tr>
+        </table>
+        <div class="total__heading total__delivery">
+          <h2 class="heading_4">Доставка в пункт выдачи</h2>
+          <button class="button_edit">
+            <img src="assets/edit.svg" alt="Edit button" />
+          </button>
+        </div>
+        <div class="total__span total__delivery">
+          <span>Бишкек, улица Ахматбека Суюмбаева, 12/1</span>
+        </div>
+        <div class="total__span total__delivery">
+          <span class="total__text_magenta">5-8 фев</span>
+        </div>
+        <div class="card_grey total__span">
+          <div class="delivery-method__price-shipping">
+            <img
+              src="assets/price shipping.svg"
+              alt="Price shipping check mark"
+            /><span
+              >Обратная доставка товаров на склад при отказе —
+              <span class="delivery-method__price-shipping_free"
+                >бесплатно</span
+              ></span
+            >
+          </div>
+        </div>
+        <div class="total__heading total__payment">
+          <h2 class="heading_4">Оплата картой</h2>
+          <button class="button_edit">
+            <img src="assets/edit.svg" alt="Edit button" />
+          </button>
+        </div>
+        <div class="payment-method__cards total__payment">
+          <div class="payment-method__card">
+            <div class="payment-method__image">
+              <img src="assets/mir.svg" alt="Card 'Mir'" />
+            </div>
+            <span>1234 56•• •••• 1234</span>
+          </div>
+        </div>
+        <div class="card_grey total__span">
+          <div style="margin-bottom: 8px">
+            <input
+              type="checkbox"
+              class="checkbox"
+              id="pay_now"
+              name="pay_now"
+              value="true"
+            />
+            <label for="pay_now">Списать оплату сразу</label>
+          </div>
+          <span>Спишем оплату с карты при получении</span>
+        </div>
+        <button class="button_magenta">Заказать</button>
+        <div class="total__span" style="display: flex; align-items: center;">
+          <input
+            type="checkbox"
+            class="checkbox_bw checkbox"
+            id="agree"
+            name="agree"
+            value="true"
+          />
+          <label class="with_link" for="agree"
+            >Соглашаюсь
+            <a class="total__link" href="#"
+              >с правилами пользования торговой площадкой</a
+            >
+            и <a class="total__link" href="#">возврата</a></label
+          >
+        </div>
       </div>
     </div>
+    <footer class="footer">
+      <span>© 2022  ООО «Товары и точка»</span>
+    </footer>
     <script>
       new ItcAccordion(document.querySelector(".accordion"), {
         alwaysOpen: true,
