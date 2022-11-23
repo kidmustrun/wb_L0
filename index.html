@@ -57,6 +57,7 @@
                     class="checkbox"
                     id="select_all"
                     name="select_all"
+                    checked
                     onchange="selectAllItems(this.checked)"
                   />
                   <label for="select_all">Выбрать все</label>
@@ -78,8 +79,14 @@
                       </div>
                       <div class="card-item__text">
                         <div class="item-price_for-mobile">
-                          <span id="item1_discount" class="item-price__discount">522 сом</span>
-                          <span id="item1_nodiscount" class="item-price__nodiscount">1051 сом</span>
+                          <span id="item1_discount" class="item-price__discount"
+                            >522 сом</span
+                          >
+                          <span
+                            id="item1_nodiscount"
+                            class="item-price__nodiscount"
+                            >1051 сом</span
+                          >
                         </div>
                         <span class="card-item__title"
                           >Футболка UZcotton мужская</span
@@ -96,10 +103,25 @@
                     <div class="item-operations">
                       <div class="item-operations__form">
                         <div class="item-operations__form_counter">
-                          <input type="button" value="-" id="button_minus" />
-                          <input type="number" id="num_count" name="quantity" />
+                          <input
+                            type="button"
+                            value="-"
+                            id="item1_button_minus"
+                          />
+                          <input
+                            type="number"
+                            id="item1_count"
+                            name="item1_count"
+                            value="1"
+                            class="item_count"
+                            onchange="calculateTotalCost()"
+                          />
 
-                          <input type="button" value="+" id="button_plus" />
+                          <input
+                            type="button"
+                            value="+"
+                            id="item1_button_plus"
+                          />
                         </div>
                         <p class="item-operations__warning">Осталось 2 шт.</p>
                       </div>
@@ -135,7 +157,9 @@
                           <span class="item-price__discount" id="item2_discount"
                             >2 100 047 сом</span
                           >
-                          <span class="item-price__nodiscount" id="item2_nodiscount"
+                          <span
+                            class="item-price__nodiscount"
+                            id="item2_nodiscount"
                             >2 300 047 сом</span
                           >
                         </div>
@@ -155,10 +179,25 @@
                     <div class="item-operations">
                       <div class="item-operations__form">
                         <div class="item-operations__form_counter">
-                          <input type="button" value="-" id="button_minus" />
-                          <input type="number" id="num_count" name="quantity" />
+                          <input
+                            type="button"
+                            value="-"
+                            id="item2_button_minus"
+                          />
+                          <input
+                            type="number"
+                            id="item2_count"
+                            name="item2_count"
+                            value="200"
+                            class="item_count"
+                            onchange="calculateTotalCost()"
+                          />
 
-                          <input type="button" value="+" id="button_plus" />
+                          <input
+                            type="button"
+                            value="+"
+                            id="item2_button_plus"
+                          />
                         </div>
                       </div>
                       <div class="item-operations__buttons">
@@ -191,8 +230,14 @@
                       </div>
                       <div class="card-item__text">
                         <div class="item-price_for-mobile">
-                          <span class="item-price__discount" id="item3_discount">494 сом</span>
-                          <span class="item-price__nodiscount" id="item3_nodiscount">950 сом</span>
+                          <span class="item-price__discount" id="item3_discount"
+                            >494 сом</span
+                          >
+                          <span
+                            class="item-price__nodiscount"
+                            id="item3_nodiscount"
+                            >950 сом</span
+                          >
                         </div>
                         <span class="card-item__title"
                           >Карандаши цветные Faber-Castell "Замок", набор 24
@@ -207,10 +252,25 @@
                     <div class="item-operations">
                       <div class="item-operations__form">
                         <div class="item-operations__form_counter">
-                          <input type="button" value="-" id="button_minus" />
-                          <input type="number" id="num_count" name="quantity" />
+                          <input
+                            type="button"
+                            value="-"
+                            id="item3_button_minus"
+                          />
+                          <input
+                            type="number"
+                            id="item3_count"
+                            name="item3_count"
+                            value="1"
+                            class="item_count"
+                            onchange="calculateTotalCost()"
+                          />
 
-                          <input type="button" value="+" id="button_plus" />
+                          <input
+                            type="button"
+                            value="+"
+                            id="item3_button_plus"
+                          />
                         </div>
                         <p class="item-operations__warning">Осталось 2 шт.</p>
                       </div>
@@ -504,7 +564,7 @@
         </div>
         <button class="button_magenta">Заказать</button>
         <div class="total__span" style="display: flex; gap: 8px">
-          <img src="assets/check.svg" alt="Check agree">
+          <img src="assets/check.svg" alt="Check agree" />
           <span
             >Соглашаюсь
             <a class="total__link" href="#"
@@ -516,7 +576,7 @@
       </div>
     </div>
     <footer class="footer">
-      <span>© 2022  ООО «Товары и точка»</span>
+      <span>© 2022 ООО «Товары и точка»</span>
     </footer>
     <script>
       new ItcAccordion(document.querySelector(".accordion"), {
