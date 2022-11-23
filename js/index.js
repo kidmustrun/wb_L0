@@ -13,9 +13,10 @@ function selectItem(checked, id) {
 }
 
 function prettify(num) {
-  var n = num.toString();
+  var n = (Math.round(num * 100)/100).toString();
   return n.replace(/(\d{1,3}(?=(?:\d\d\d)+(?!\d)))/g, "$1" + " ");
 }
+
 function calculatePrices() {
   var counts = document.getElementsByClassName("item_count");
   let items__discount = document.getElementsByClassName("item-price__discount");
@@ -52,8 +53,10 @@ function calculateTotalCost() {
   );
   for (var i = 0; i < items__discount_array.length; i++) {
     if (checkboxes[i].checked) {
-        items__discount[i*2].innerHTML = prices_discount[i] * counts[i].value+ ' сом';
-        items__discount[i*2+1].innerHTML = prices_discount[i] * counts[i].value+ ' сом';
+      items__discount[i * 2].innerHTML =
+      prettify(prices_discount[i] * counts[i].value) + " сом";
+      items__discount[i * 2 + 1].innerHTML =
+      prettify(prices_discount[i] * counts[i].value) + " сом";
       sum += prices_discount[i] * counts[i].value;
     }
   }
@@ -67,8 +70,10 @@ function calculateTotalCost() {
   );
   for (var i = 0; i < items__nodiscount_array.length; i++) {
     if (checkboxes[i].checked) {
-        items__nodiscount[i*2].innerHTML = prices_nodiscount[i] * counts[i].value + ' сом';
-      items__nodiscount[i*2+1].innerHTML = prices_nodiscount[i] * counts[i].value + ' сом';
+      items__nodiscount[i * 2].innerHTML =
+      prettify(prices_nodiscount[i] * counts[i].value) + " сом";
+      items__nodiscount[i * 2 + 1].innerHTML =
+      prettify(prices_nodiscount[i] * counts[i].value) + " сом";
       sum_nodiscount += prices_nodiscount[i] * counts[i].value;
     }
   }
@@ -79,6 +84,37 @@ function calculateTotalCost() {
     prettify(sum_nodiscount) + " сом";
   document.getElementById("sum_discount").innerHTML =
     prettify(sum_discount) + " сом";
+}
+
+function increaseQuantity(elem) {
+  if (elem.parentNode.nextElementSibling) {
+    if (
+      +elem.parentNode.nextElementSibling.innerHTML.replace(/\D/g, "") >
+      elem.previousElementSibling.value
+    ) {
+      ++elem.previousElementSibling.value;
+      elem.style.color = "#000000";
+      elem.previousElementSibling.previousElementSibling.style.color =
+        "#000000";
+    }
+    if (
+      +elem.parentNode.nextElementSibling.innerHTML.replace(/\D/g, "") ===
+      +elem.previousElementSibling.value
+    )
+      elem.style.color = "rgba(0, 0, 0, 0.2)";
+  } else ++elem.previousElementSibling.value;
+  calculateTotalCost();
+}
+
+function subtractQuantity(elem) {
+  if (elem.nextElementSibling.value > 0) {
+    --elem.nextElementSibling.value;
+    elem.style.color = "#000000";
+    elem.nextElementSibling.nextElementSibling.style.color = "#000000";
+  }
+  if (+elem.nextElementSibling.value === 0)
+    elem.style.color = "rgba(0, 0, 0, 0.2)";
+  calculateTotalCost();
 }
 
 selectAllItems(true);

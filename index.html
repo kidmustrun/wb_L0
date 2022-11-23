@@ -107,11 +107,13 @@
                             type="button"
                             value="-"
                             id="item1_button_minus"
+                            onclick="subtractQuantity(this)"
                           />
                           <input
                             type="number"
                             id="item1_count"
                             name="item1_count"
+                            min="0"
                             value="1"
                             class="item_count"
                             onchange="calculateTotalCost()"
@@ -121,6 +123,7 @@
                             type="button"
                             value="+"
                             id="item1_button_plus"
+                            onclick="increaseQuantity(this)"
                           />
                         </div>
                         <p class="item-operations__warning">Осталось 2 шт.</p>
@@ -183,6 +186,7 @@
                             type="button"
                             value="-"
                             id="item2_button_minus"
+                            onclick="subtractQuantity(this)"
                           />
                           <input
                             type="number"
@@ -197,6 +201,7 @@
                             type="button"
                             value="+"
                             id="item2_button_plus"
+                            onclick="increaseQuantity(this)"
                           />
                         </div>
                       </div>
@@ -256,6 +261,7 @@
                             type="button"
                             value="-"
                             id="item3_button_minus"
+                            onclick="subtractQuantity(this)"
                           />
                           <input
                             type="number"
@@ -270,6 +276,7 @@
                             type="button"
                             value="+"
                             id="item3_button_plus"
+                            onclick="increaseQuantity(this)"
                           />
                         </div>
                         <p class="item-operations__warning">Осталось 2 шт.</p>
