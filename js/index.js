@@ -9,11 +9,12 @@ function selectAllItems(checked) {
 
 function selectItem(checked, id) {
   document.getElementById(id).checked = checked;
+  document.getElementById("select_all").checked = false;
   calculateTotalCost();
 }
 
 function prettify(num) {
-  var n = (Math.round(num * 100)/100).toString();
+  var n = (Math.round(num * 100) / 100).toString();
   return n.replace(/(\d{1,3}(?=(?:\d\d\d)+(?!\d)))/g, "$1" + " ");
 }
 
@@ -43,7 +44,20 @@ function calculatePrices() {
   }
   return [prices_discount, prices_nodiscount];
 }
+
 var [prices_discount, prices_nodiscount] = calculatePrices();
+
+function morph(int, array) {
+  return (
+    (array = array || ["товар", "товара", "товаров"]) &&
+    array[
+      int % 100 > 4 && int % 100 < 20
+        ? 2
+        : [2, 0, 1, 1, 1, 2][int % 10 < 5 ? int % 10 : 5]
+    ]
+  );
+}
+
 function calculateTotalCost() {
   var sum = 0;
   var counts = document.getElementsByClassName("item_count");
@@ -54,9 +68,9 @@ function calculateTotalCost() {
   for (var i = 0; i < items__discount_array.length; i++) {
     if (checkboxes[i].checked) {
       items__discount[i * 2].innerHTML =
-      prettify(prices_discount[i] * counts[i].value) + " сом";
+        prettify(prices_discount[i] * counts[i].value) + " сом";
       items__discount[i * 2 + 1].innerHTML =
-      prettify(prices_discount[i] * counts[i].value) + " сом";
+        prettify(prices_discount[i] * counts[i].value) + " сом";
       sum += prices_discount[i] * counts[i].value;
     }
   }
@@ -68,13 +82,15 @@ function calculateTotalCost() {
   var items__nodiscount_array = [...items__nodiscount].filter(
     (item) => item.tagName === "SPAN"
   );
+  var sum_count = 0;
   for (var i = 0; i < items__nodiscount_array.length; i++) {
     if (checkboxes[i].checked) {
       items__nodiscount[i * 2].innerHTML =
-      prettify(prices_nodiscount[i] * counts[i].value) + " сом";
+        prettify(prices_nodiscount[i] * counts[i].value) + " сом";
       items__nodiscount[i * 2 + 1].innerHTML =
-      prettify(prices_nodiscount[i] * counts[i].value) + " сом";
+        prettify(prices_nodiscount[i] * counts[i].value) + " сом";
       sum_nodiscount += prices_nodiscount[i] * counts[i].value;
+      sum_count += 1;
     }
   }
 
@@ -84,6 +100,7 @@ function calculateTotalCost() {
     prettify(sum_nodiscount) + " сом";
   document.getElementById("sum_discount").innerHTML =
     prettify(sum_discount) + " сом";
+  document.getElementById("sum_count").innerHTML = sum_count + ' ' + morph(sum_count);
 }
 
 function increaseQuantity(elem) {
