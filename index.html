@@ -57,7 +57,7 @@
                     class="checkbox"
                     id="select_all"
                     name="select_all"
-                    value="true"
+                    onchange="selectAllItems(this.checked)"
                   />
                   <label for="select_all">Выбрать все</label>
                 </div>
@@ -66,20 +66,20 @@
                     <div class="card-item">
                       <input
                         type="checkbox"
-                        class="checkbox"
-                        id="item1"
-                        name="item1"
-                        value="1"
+                        class="checkbox item_check"
+                        id="item1_check"
+                        name="item1_check"
+                        onchange="selectItem(this.checked, this.id)"
                       />
-                      <label for="item1"></label>
+                      <label for="item1_check"></label>
                       <div class="card-item__image">
                         <img src="assets/item1.png" alt="Item photo" />
                         <span class="card-item__size_for-mobile">56</span>
                       </div>
                       <div class="card-item__text">
                         <div class="item-price_for-mobile">
-                          <span class="item-price__discount">522 сом</span>
-                          <span class="item-price__nodiscount">1051 сом</span>
+                          <span id="item1_discount" class="item-price__discount">522 сом</span>
+                          <span id="item1_nodiscount" class="item-price__nodiscount">1051 сом</span>
                         </div>
                         <span class="card-item__title"
                           >Футболка UZcotton мужская</span
@@ -121,21 +121,21 @@
                     <div class="card-item">
                       <input
                         type="checkbox"
-                        class="checkbox"
-                        id="item2"
-                        name="item2"
-                        value="2"
+                        class="checkbox item_check"
+                        id="item2_check"
+                        name="item2_check"
+                        onchange="selectItem(this.checked, this.id)"
                       />
-                      <label for="item2"></label>
+                      <label for="item2_check"></label>
                       <div class="card-item__image">
                         <img src="assets/item2.png" alt="Item photo" />
                       </div>
                       <div class="card-item__text">
                         <div class="item-price_for-mobile">
-                          <span class="item-price__discount"
+                          <span class="item-price__discount" id="item2_discount"
                             >2 100 047 сом</span
                           >
-                          <span class="item-price__nodiscount"
+                          <span class="item-price__nodiscount" id="item2_nodiscount"
                             >2 300 047 сом</span
                           >
                         </div>
@@ -179,19 +179,20 @@
                     <div class="card-item">
                       <input
                         type="checkbox"
-                        class="checkbox"
-                        id="item3"
-                        name="item3"
+                        class="checkbox item_check"
+                        id="item3_check"
+                        name="item3_check"
                         value="3"
+                        onchange="selectItem(this.checked, this.id)"
                       />
-                      <label for="item3"></label>
+                      <label for="item3_check"></label>
                       <div class="card-item__image">
                         <img src="assets/item3.png" alt="Item photo" />
                       </div>
                       <div class="card-item__text">
                         <div class="item-price_for-mobile">
-                          <span class="item-price__discount">494 сом</span>
-                          <span class="item-price__nodiscount">950 сом</span>
+                          <span class="item-price__discount" id="item3_discount">494 сом</span>
+                          <span class="item-price__nodiscount" id="item3_nodiscount">950 сом</span>
                         </div>
                         <span class="card-item__title"
                           >Карандаши цветные Faber-Castell "Замок", набор 24
@@ -434,15 +435,15 @@
         <table class="total__table">
           <tr>
             <td><h2 class="heading_2">Итого</h2></td>
-            <td><h2 class="heading_2">2 101 063 сом</h2></td>
+            <td><h2 class="heading_2" id="sum"></h2></td>
           </tr>
           <tr>
             <td><span>4 товара</span></td>
-            <td><span>2 302 048 сом</span></td>
+            <td><span id="sum_nodiscount"></span></td>
           </tr>
           <tr>
             <td><span>Скидка</span></td>
-            <td><span>−200 985 сом</span></td>
+            <td><span id="sum_discount"></span></td>
           </tr>
           <tr>
             <td><span>Доставка</span></td>
@@ -522,5 +523,6 @@
         alwaysOpen: true,
       });
     </script>
+    <script src="js/index.js"></script>
   </body>
 </html>
