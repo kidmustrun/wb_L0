@@ -563,13 +563,13 @@
               class="checkbox"
               id="pay_now"
               name="pay_now"
-              value="true"
+              onchange="calculateTotalCost()"
             />
             <label for="pay_now">Списать оплату сразу</label>
           </div>
           <span>Спишем оплату с карты при получении</span>
         </div>
-        <button class="button_magenta">Заказать</button>
+        <button class="button_magenta" id="order_creation_button">Заказать</button>
         <div class="total__span" style="display: flex; gap: 8px">
           <img src="assets/check.svg" alt="Check agree" />
           <span

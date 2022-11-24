@@ -58,7 +58,6 @@ function morph(int, array) {
   );
 }
 
-
 function calculateTotalCost() {
   var sum = 0;
   var counts = document.getElementsByClassName("item_count");
@@ -67,10 +66,10 @@ function calculateTotalCost() {
     (item) => item.tagName === "SPAN"
   );
   for (var i = 0; i < items__discount_array.length; i++) {
-    if(counts[i].value <=1){
-        counts[i].value = 1;
-        counts[i].previousElementSibling.style.color = "rgba(0, 0, 0, 0.2)";
-        counts[i].nextElementSibling.style.color = "#000000";
+    if (counts[i].value <= 1) {
+      counts[i].value = 1;
+      counts[i].previousElementSibling.style.color = "rgba(0, 0, 0, 0.2)";
+      counts[i].nextElementSibling.style.color = "#000000";
     }
     if (checkboxes[i].checked) {
       items__discount[i * 2].innerHTML =
@@ -106,7 +105,14 @@ function calculateTotalCost() {
     prettify(sum_nodiscount) + " сом";
   document.getElementById("sum_discount").innerHTML =
     prettify(sum_discount) + " сом";
-  document.getElementById("sum_count").innerHTML = sum_count + ' ' + morph(sum_count);
+  document.getElementById("sum_count").innerHTML =
+    sum_count + " " + morph(sum_count);
+    var pay_now = document.getElementById("pay_now");
+    if (pay_now.checked)
+    document.getElementById(
+      "order_creation_button"
+    ).innerHTML = `Оплатить ${prettify(sum)} сом`;
+  else document.getElementById("order_creation_button").innerHTML = `Заказать`;
 }
 
 function increaseQuantity(elem) {
