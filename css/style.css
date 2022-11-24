@@ -508,16 +508,21 @@ body {
   padding: 0px 6px;
 }
 .delivery-method__price-shipping {
-  display: flex;
-  gap: 9px;
-  align-items: center;
+  display: inline-block;
+  position: relative;
 }
-
+.delivery-method__price-shipping img{
+  vertical-align: middle;
+  margin-right: 9px;
+}
+.delivery-method__price-shipping span{
+  vertical-align: middle;
+}
 .delivery-method__price-shipping_free {
   color: #0cb477;
   border-bottom: 1px dashed rgba(12, 180, 119, 0.2);
   display: inline-block;
-  position: relative;
+  vertical-align: middle;
 }
 .delivery-method__price-shipping_free_info {
   display: none;
@@ -533,16 +538,16 @@ body {
   line-height: 16px;
   position: absolute;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15), 0px 0px 1px rgba(0, 0, 0, 0.3);
-  top: 28px;
-  left:-250px;
   right:0;
+ top: 25px;
   width: 288px;
+  z-index: 10;
 }
 
-.delivery-method__price-shipping_free:hover {
+.delivery-method__price-shipping:hover {
   cursor: pointer;
 }
-.delivery-method__price-shipping_free:hover .delivery-method__price-shipping_free_info {
+.delivery-method__price-shipping:hover .delivery-method__price-shipping_free_info {
   display: flex;
   -webkit-animation: fadeInFromNone 0.5s ease-out;
   -moz-animation: fadeInFromNone 0.5s ease-out;
