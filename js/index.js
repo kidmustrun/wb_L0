@@ -1,5 +1,18 @@
 var checkboxes = document.getElementsByClassName("item_check");
 
+var counts = document.getElementsByClassName("item_count");
+var items__discount = document.getElementsByClassName("item-price__discount");
+var items__discount_array = [...items__discount].filter(
+  (item) => item.tagName === "SPAN"
+);
+var items__nodiscount = document.getElementsByClassName(
+  "item-price__nodiscount"
+);
+var items__nodiscount_array = [...items__nodiscount].filter(
+  (item) => item.tagName === "SPAN"
+);
+var pay_now = document.getElementById("pay_now");
+
 function selectAllItems(checked) {
   for (let checkbox of checkboxes) {
     checkbox.checked = checked;
@@ -8,36 +21,33 @@ function selectAllItems(checked) {
 }
 
 function selectItem(checked, id) {
+  var select_all = document.getElementById("select_all");
   document.getElementById(id).checked = checked;
-  document.getElementById("select_all").checked = false;
+  let sum_checkboxes = 0;
+  for (let checkbox of checkboxes) {
+    if (checkbox.checked) sum_checkboxes++;
+  }
+  sum_checkboxes === checkboxes.length
+    ? (select_all.checked = true)
+    : (select_all.checked = false);
   calculateTotalCost();
 }
 
 function prettify(num) {
-  var n = (Math.round(num * 100) / 100).toString();
+  let n = (Math.round(num * 100) / 100).toString();
   return n.replace(/(\d{1,3}(?=(?:\d\d\d)+(?!\d)))/g, "$1" + " ");
 }
 
 function calculatePrices() {
-  var counts = document.getElementsByClassName("item_count");
-  let items__discount = document.getElementsByClassName("item-price__discount");
-  var items__discount_array = [...items__discount].filter(
-    (item) => item.tagName === "SPAN"
-  );
-  var prices_discount = [];
-  for (var i = 0; i < items__discount_array.length; i++) {
+  let prices_discount = [];
+  for (let i = 0; i < items__discount_array.length; i++) {
     prices_discount.push(
       items__discount_array[i].innerHTML.replace(/\D/g, "") / counts[i].value
     );
   }
-  var items__nodiscount = document.getElementsByClassName(
-    "item-price__nodiscount"
-  );
-  var items__nodiscount_array = [...items__nodiscount].filter(
-    (item) => item.tagName === "SPAN"
-  );
-  var prices_nodiscount = [];
-  for (var i = 0; i < items__nodiscount_array.length; i++) {
+
+  let prices_nodiscount = [];
+  for (let i = 0; i < items__nodiscount_array.length; i++) {
     prices_nodiscount.push(
       items__nodiscount_array[i].innerHTML.replace(/\D/g, "") / counts[i].value
     );
@@ -59,13 +69,8 @@ function morph(int, array) {
 }
 
 function calculateTotalCost() {
-  var sum = 0;
-  var counts = document.getElementsByClassName("item_count");
-  let items__discount = document.getElementsByClassName("item-price__discount");
-  var items__discount_array = [...items__discount].filter(
-    (item) => item.tagName === "SPAN"
-  );
-  for (var i = 0; i < items__discount_array.length; i++) {
+  let sum = 0;
+  for (let i = 0; i < items__discount_array.length; i++) {
     if (counts[i].value <= 1) {
       counts[i].value = 1;
       counts[i].previousElementSibling.style.color = "rgba(0, 0, 0, 0.2)";
@@ -80,15 +85,9 @@ function calculateTotalCost() {
     }
   }
 
-  var sum_nodiscount = 0;
-  var items__nodiscount = document.getElementsByClassName(
-    "item-price__nodiscount"
-  );
-  var items__nodiscount_array = [...items__nodiscount].filter(
-    (item) => item.tagName === "SPAN"
-  );
-  var sum_count = 0;
-  for (var i = 0; i < items__nodiscount_array.length; i++) {
+  let sum_nodiscount = 0;
+  let sum_count = 0;
+  for (let i = 0; i < items__nodiscount_array.length; i++) {
     if (checkboxes[i].checked) {
       items__nodiscount[i * 2].innerHTML =
         prettify(prices_nodiscount[i] * counts[i].value) + " сом";
@@ -98,8 +97,7 @@ function calculateTotalCost() {
       sum_count += 1;
     }
   }
-
-  var sum_discount = sum - sum_nodiscount;
+  let sum_discount = sum - sum_nodiscount;
   document.getElementById("sum").innerHTML = prettify(sum) + " сом";
   document.getElementById("sum_nodiscount").innerHTML =
     prettify(sum_nodiscount) + " сом";
@@ -107,12 +105,16 @@ function calculateTotalCost() {
     prettify(sum_discount) + " сом";
   document.getElementById("sum_count").innerHTML =
     sum_count + " " + morph(sum_count);
-    var pay_now = document.getElementById("pay_now");
-    if (pay_now.checked)
-    document.getElementById(
-      "order_creation_button"
-    ).innerHTML = `Оплатить ${prettify(sum)} сом`;
-  else document.getElementById("order_creation_button").innerHTML = `Заказать`;
+
+  changeOrderButtonMessage(pay_now.checked, sum);
+}
+
+function changeOrderButtonMessage(pay_now_checked, sum) {
+  pay_now_checked
+    ? (document.getElementById(
+        "order_creation_button"
+      ).innerHTML = `Оплатить ${prettify(sum)} сом`)
+    : (document.getElementById("order_creation_button").innerHTML = `Заказать`);
 }
 
 function increaseQuantity(elem) {

@@ -593,6 +593,14 @@ body {
   padding: 24px;
   color: rgba(255, 255, 255, 0.7);
 }
+.button_delete:hover {
+  filter: invert(37%) sepia(76%) saturate(2062%) hue-rotate(347deg) brightness(98%) contrast(96%);
+  cursor: pointer;
+}
+.button_favorite:hover{
+  filter: invert(15%) sepia(82%) saturate(6305%) hue-rotate(302deg) brightness(92%) contrast(93%);
+  cursor: pointer;
+}
 @media screen and (max-width: 960px) {
   .container {
     padding: 0;
