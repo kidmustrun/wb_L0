@@ -105,7 +105,11 @@ function calculateTotalCost() {
     prettify(sum_discount) + " сом";
   document.getElementById("sum_count").innerHTML =
     sum_count + " " + morph(sum_count);
-
+    if(sum_count){
+document.getElementById("menu-links__count").style.display = "block"
+  document.getElementById("menu-links__count").innerHTML = sum_count;
+}
+  else document.getElementById("menu-links__count").style.display = "none"
   changeOrderButtonMessage(pay_now.checked, sum);
 }
 
