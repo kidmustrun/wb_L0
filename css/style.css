@@ -279,6 +279,107 @@ body {
   line-height: 16px;
   color: #a0a0a4;
 }
+
+.card-item__seller_button .card-item__seller_info {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 18px;
+  background: #ffffff;
+  border-radius: 8px;
+  color: #000;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 11px 16px;
+  gap: 8px;
+  font-size: 13px;
+  line-height: 16px;
+  width: 280px;
+  min-width: 100%;
+}
+.card-item__seller_button {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+.card-item__seller_button:hover {
+  cursor: pointer;
+}
+.card-item__seller_button:hover .card-item__seller_info {
+  display: flex;
+  -webkit-animation: fadeInFromNone 0.5s ease-out;
+  -moz-animation: fadeInFromNone 0.5s ease-out;
+  -o-animation: fadeInFromNone 0.5s ease-out;
+  animation: fadeInFromNone 0.5s ease-out;
+}
+@-webkit-keyframes fadeInFromNone {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  1% {
+    display: flex;
+    opacity: 0;
+  }
+
+  100% {
+    display: flex;
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeInFromNone {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  1% {
+    display: flex;
+    opacity: 0;
+  }
+
+  100% {
+    display: flex;
+    opacity: 1;
+  }
+}
+
+@-o-keyframes fadeInFromNone {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  1% {
+    display: flex;
+    opacity: 0;
+  }
+
+  100% {
+    display: flex;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInFromNone {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  1% {
+    display: flex;
+    opacity: 0;
+  }
+
+  100% {
+    display: flex;
+    opacity: 1;
+  }
+}
+
 .card-item__image-absent img {
   -webkit-filter: grayscale(100%);
   -moz-filter: grayscale(100%);
@@ -415,7 +516,40 @@ body {
 .delivery-method__price-shipping_free {
   color: #0cb477;
   border-bottom: 1px dashed rgba(12, 180, 119, 0.2);
+  display: inline-block;
+  position: relative;
 }
+.delivery-method__price-shipping_free_info {
+  display: none;
+  background: #ffffff;
+  border-radius: 8px;
+  color: #000;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px 16px;
+  gap: 8px;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  position: absolute;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15), 0px 0px 1px rgba(0, 0, 0, 0.3);
+  top: 28px;
+  left:-250px;
+  right:0;
+  width: 288px;
+}
+
+.delivery-method__price-shipping_free:hover {
+  cursor: pointer;
+}
+.delivery-method__price-shipping_free:hover .delivery-method__price-shipping_free_info {
+  display: flex;
+  -webkit-animation: fadeInFromNone 0.5s ease-out;
+  -moz-animation: fadeInFromNone 0.5s ease-out;
+  -o-animation: fadeInFromNone 0.5s ease-out;
+  animation: fadeInFromNone 0.5s ease-out;
+}
+
 .payment-method {
   background: #ffffff;
   border-radius: 16px;
@@ -571,6 +705,7 @@ body {
   background: #f6f6fa;
   border-radius: 8px;
   margin-top: 12px;
+  position: relative;
 }
 .button_magenta {
   background: #cb11ab;
@@ -594,11 +729,13 @@ body {
   color: rgba(255, 255, 255, 0.7);
 }
 .button_delete:hover {
-  filter: invert(37%) sepia(76%) saturate(2062%) hue-rotate(347deg) brightness(98%) contrast(96%);
+  filter: invert(37%) sepia(76%) saturate(2062%) hue-rotate(347deg)
+    brightness(98%) contrast(96%);
   cursor: pointer;
 }
-.button_favorite:hover{
-  filter: invert(15%) sepia(82%) saturate(6305%) hue-rotate(302deg) brightness(92%) contrast(93%);
+.button_favorite:hover {
+  filter: invert(15%) sepia(82%) saturate(6305%) hue-rotate(302deg)
+    brightness(92%) contrast(93%);
   cursor: pointer;
 }
 @media screen and (max-width: 960px) {
@@ -712,10 +849,11 @@ body {
   .delivery-method {
     width: 100%;
   }
-  .card_grey{
-    background: #F0ECF4;
+  .card_grey {
+    background: #f0ecf4;
   }
-  .total__delivery, .total__payment{
+  .total__delivery,
+  .total__payment {
     display: none;
   }
 }
@@ -729,7 +867,8 @@ body {
   }
   .navigation__button-catalog {
     border: none;
-    background: url("../assets/button-catalog_mobile.svg") no-repeat center center;
+    background: url("../assets/button-catalog_mobile.svg") no-repeat center
+      center;
   }
   .search-form {
     background: transparent;
