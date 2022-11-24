@@ -58,6 +58,7 @@ function morph(int, array) {
   );
 }
 
+
 function calculateTotalCost() {
   var sum = 0;
   var counts = document.getElementsByClassName("item_count");
@@ -66,6 +67,11 @@ function calculateTotalCost() {
     (item) => item.tagName === "SPAN"
   );
   for (var i = 0; i < items__discount_array.length; i++) {
+    if(counts[i].value <=1){
+        counts[i].value = 1;
+        counts[i].previousElementSibling.style.color = "rgba(0, 0, 0, 0.2)";
+        counts[i].nextElementSibling.style.color = "#000000";
+    }
     if (checkboxes[i].checked) {
       items__discount[i * 2].innerHTML =
         prettify(prices_discount[i] * counts[i].value) + " сом";
@@ -124,12 +130,12 @@ function increaseQuantity(elem) {
 }
 
 function subtractQuantity(elem) {
-  if (elem.nextElementSibling.value > 0) {
+  if (elem.nextElementSibling.value > 1) {
     --elem.nextElementSibling.value;
     elem.style.color = "#000000";
     elem.nextElementSibling.nextElementSibling.style.color = "#000000";
   }
-  if (+elem.nextElementSibling.value === 0)
+  if (+elem.nextElementSibling.value === 1)
     elem.style.color = "rgba(0, 0, 0, 0.2)";
   calculateTotalCost();
 }
