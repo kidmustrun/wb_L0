@@ -517,14 +517,14 @@
               src="assets/price shipping.svg"
               alt="Price shipping check mark"
             /><span>Обратная доставка товаров на склад при отказе —</span>
-                <div class="delivery-method__price-shipping_free"
-                >бесплатно
-                </div
-              ><div class="delivery-method__price-shipping_free_info">
-                <span>Если товары вам не подойдут, мы вернем их обратно на склад — это бесплатно</span>
-              </div>
-              </div>
-             
+            <div class="delivery-method__price-shipping_free">бесплатно</div>
+            <div class="delivery-method__price-shipping_free_info">
+              <span
+                >Если товары вам не подойдут, мы вернем их обратно на склад —
+                это бесплатно</span
+              >
+            </div>
+          </div>
         </div>
         <div class="payment-method">
           <div class="payment-method__heading">
@@ -548,9 +548,17 @@
           </div>
           <div class="recipient__container">
             <div class="recipient__form">
-              <input class="recipient__input" type="text" id="name" required />
+              <input
+                class="recipient__input"
+                type="text"
+                id="name"
+                required
+                oninput="validateInput(this)"
+                onblur="validateInput(this)"
+              />
 
               <span class="floating-label">Имя</span>
+              <span class="error-label"></span>
             </div>
             <div class="recipient__form">
               <input
@@ -558,8 +566,11 @@
                 type="text"
                 id="surname"
                 required
+                oninput="validateInput(this)"
+                onblur="validateInput(this)"
               />
               <span class="floating-label">Фамилия</span>
+              <span class="error-label"></span>
             </div>
             <div class="recipient__form">
               <input
@@ -567,24 +578,40 @@
                 type="email"
                 id="email"
                 required
+                oninput="validateInput(this)"
+                onblur="validateInput(this)"
               />
               <span class="floating-label">Почта</span>
+              <span class="error-label"></span>
+            </div>
+            <div class="recipient__form">
+              <input
+                class="recipient__input recipient__input_tel"
+                type="text"
+                id="phone"
+                name="phone"
+                required
+                oninput="validateInput(this)"
+                onblur="validateInput(this)"
+                maxlength="17"
+                oninput="this.value = this.value.replace(/[A-Za-zА-Яа-яЁё-]/, '');"
+              />
+              <span class="floating-label">Телефон</span>
+              <span class="error-label"></span>
             </div>
             <div class="recipient__form">
               <input
                 class="recipient__input"
-                type="tel"
-                id="phone"
-                name="phone"
-                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                type="text"
+                id="inn"
                 required
+                oninput="validateInput(this)"
+                onblur="validateInput(this)"
               />
-              <span class="floating-label">Телефон</span>
-            </div>
-            <div class="recipient__form">
-              <input class="recipient__input" type="text" id="inn" required />
               <span class="floating-label">ИНН</span>
-              <span class="input-subscription">Для таможенного оформления</span>
+              <span class="input-subscription">Для таможенного оформления</span
+              ><br />
+              <span class="error-label"></span>
             </div>
           </div>
         </div>
@@ -627,14 +654,14 @@
               src="assets/price shipping.svg"
               alt="Price shipping check mark"
             /><span>Обратная доставка товаров на склад при отказе —</span>
-                <div class="delivery-method__price-shipping_free"
-                >бесплатно
-                </div
-              ><div class="delivery-method__price-shipping_free_info">
-                <span>Если товары вам не подойдут, мы вернем их обратно на склад — это бесплатно</span>
-              </div>
-              </div>
-              
+            <div class="delivery-method__price-shipping_free">бесплатно</div>
+            <div class="delivery-method__price-shipping_free_info">
+              <span
+                >Если товары вам не подойдут, мы вернем их обратно на склад —
+                это бесплатно</span
+              >
+            </div>
+          </div>
         </div>
         <div class="total__heading total__payment">
           <h2 class="heading_4">Оплата картой</h2>
@@ -663,7 +690,11 @@
           </div>
           <span>Спишем оплату с карты при получении</span>
         </div>
-        <button class="button_magenta" id="order_creation_button">
+        <button
+          class="button_magenta"
+          id="order_creation_button"
+          onclick="validateForm()"
+        >
           Заказать
         </button>
         <div class="total__span" style="display: flex; gap: 8px">
@@ -686,6 +717,7 @@
         alwaysOpen: true,
       });
     </script>
+    <script src="js/phone_matrix.js"></script>
     <script src="js/index.js"></script>
   </body>
 </html>

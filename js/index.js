@@ -12,7 +12,10 @@ var items__nodiscount_array = [...items__nodiscount].filter(
   (item) => item.tagName === "SPAN"
 );
 var pay_now = document.getElementById("pay_now");
-
+var order_creation_button = document.getElementById("order_creation_button");
+var errors = document.getElementsByClassName("error-label");
+let inputs = document.getElementsByClassName("recipient__input");
+var inputs_array = [...inputs];
 function selectAllItems(checked) {
   for (let checkbox of checkboxes) {
     checkbox.checked = checked;
@@ -114,10 +117,8 @@ function calculateTotalCost() {
 
 function changeOrderButtonMessage(pay_now_checked, sum) {
   pay_now_checked
-    ? (document.getElementById(
-        "order_creation_button"
-      ).innerHTML = `Оплатить ${prettify(sum)} сом`)
-    : (document.getElementById("order_creation_button").innerHTML = `Заказать`);
+    ? (order_creation_button.innerHTML = `Оплатить ${prettify(sum)} сом`)
+    : (order_creation_button.innerHTML = `Заказать`);
 }
 
 function increaseQuantity(elem) {
@@ -149,6 +150,153 @@ function subtractQuantity(elem) {
   if (+elem.nextElementSibling.value === 1)
     elem.style.color = "rgba(0, 0, 0, 0.2)";
   calculateTotalCost();
+}
+const validateEmail = (email) => {
+  return email.match(
+    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  );
+};
+const validatePhone = (phone) => {
+  return phone.match(/^[\d\+][\d\(\)\ -]{15}\d$/);
+};
+
+function validateForm() {
+  for (let input of inputs) {
+    window["first_validation_" + input.id] = false;
+  }
+  for (let i = 0; i < inputs_array.length; i++) {
+    switch (inputs_array[i].id) {
+      case "name":
+        if (!inputs_array[i].value) {
+          errors[i].innerHTML = "Укажите имя";
+          inputs_array[i].classList.add("recipient__input_invalid");
+          inputs_array[0].scrollIntoView();
+        } else {
+          errors[i].innerHTML = "";
+          inputs_array[i].classList.remove("recipient__input_invalid");
+        }
+        break;
+
+      case "surname":
+        if (!inputs_array[i].value) {
+          errors[i].innerHTML = "Укажите фамилию";
+          inputs_array[i].classList.add("recipient__input_invalid");
+          inputs_array[0].scrollIntoView();
+        } else {
+          errors[i].innerHTML = "";
+          inputs_array[i].classList.remove("recipient__input_invalid");
+        }
+        break;
+
+      case "email":
+        if (!inputs_array[i].value) {
+          errors[i].innerHTML = "Укажите электронную почту";
+          inputs_array[i].classList.add("recipient__input_invalid");
+          inputs_array[0].scrollIntoView();
+        } else if (!validateEmail(inputs_array[i].value)) {
+          errors[i].innerHTML = "Проверьте адрес электронной почты";
+          inputs_array[i].classList.add("recipient__input_invalid");
+          inputs_array[0].scrollIntoView();
+        } else {
+          errors[i].innerHTML = "";
+          inputs_array[i].classList.remove("recipient__input_invalid");
+        }
+        break;
+
+      case "phone":
+        if (!inputs_array[i].value) {
+          errors[i].innerHTML = "Укажите номер телефона";
+          inputs_array[i].classList.add("recipient__input_invalid");
+          inputs_array[0].scrollIntoView();
+        } else if (!validatePhone(inputs_array[i].value)) {
+          errors[i].innerHTML = "Формат: +9 999 999 99 99";
+          inputs_array[i].classList.add("recipient__input_invalid");
+          inputs_array[0].scrollIntoView();
+        } else {
+          errors[i].innerHTML = "";
+          inputs_array[i].classList.remove("recipient__input_invalid");
+        }
+        break;
+
+      case "inn":
+        if (!inputs_array[i].value) {
+          errors[i].innerHTML = "Укажите ИНН";
+          inputs_array[i].classList.add("recipient__input_invalid");
+          inputs_array[0].scrollIntoView();
+        } else if (inputs_array[i].value.length > 10) {
+          errors[i].innerHTML = "Формат: 1234567";
+          inputs_array[i].classList.add("recipient__input_invalid");
+          inputs_array[0].scrollIntoView();
+        } else {
+          errors[i].innerHTML = "";
+          inputs_array[i].classList.remove("recipient__input_invalid");
+        }
+        break;
+    }
+  }
+}
+
+for (let input of inputs) {
+  window["first_validation_" + input.id] = true;
+  input.addEventListener("blur", () => {
+    if (
+      (input.id != "phone" && input.value) ||
+      (input.id === "phone" && input.value.length > 3)
+    ) {
+      window["first_validation_" + input.id] = false;
+      validateInput(input);
+    }
+  });
+}
+function validateInput(input) {
+  console.log(input.value);
+  let i = inputs_array.indexOf(input);
+  switch (input.id) {
+    case "name":
+      if (input.value) {
+        errors[i].innerHTML = "";
+        input.classList.remove("recipient__input_invalid");
+      }
+      break;
+    case "surname":
+      if (input.value) {
+        errors[i].innerHTML = "";
+        input.classList.remove("recipient__input_invalid");
+      }
+      break;
+    case "email":
+      if (!first_validation_email && input.value)
+        if (!validateEmail(input.value)) {
+          errors[i].innerHTML = "Проверьте адрес электронной почты";
+          input.classList.add("recipient__input_invalid");
+        } else {
+          errors[i].innerHTML = "";
+          input.classList.remove("recipient__input_invalid");
+        }
+      break;
+
+    case "phone":
+      if (!first_validation_phone && input.value.length > 3)
+        if (!validatePhone(input.value)) {
+          errors[i].innerHTML = "Формат: +9 999 999 99 99";
+          input.classList.add("recipient__input_invalid");
+        } else {
+          errors[i].innerHTML = "";
+          input.classList.remove("recipient__input_invalid");
+        }
+      break;
+
+    case "inn":
+      if (!first_validation_inn && input.value)
+        if (input.value.length > 10) {
+          errors[i].innerHTML = "Формат: 1234567";
+          input.classList.add("recipient__input_invalid");
+        } else {
+          errors[i].innerHTML = "";
+          input.classList.remove("recipient__input_invalid");
+        }
+      break;
+  }
 }
 
 selectAllItems(true);

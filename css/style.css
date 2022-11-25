@@ -511,11 +511,11 @@ body {
   display: inline-block;
   position: relative;
 }
-.delivery-method__price-shipping img{
+.delivery-method__price-shipping img {
   vertical-align: middle;
   margin-right: 9px;
 }
-.delivery-method__price-shipping span{
+.delivery-method__price-shipping span {
   vertical-align: middle;
 }
 .delivery-method__price-shipping_free {
@@ -538,8 +538,8 @@ body {
   line-height: 16px;
   position: absolute;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15), 0px 0px 1px rgba(0, 0, 0, 0.3);
-  right:0;
- top: 25px;
+  right: 0;
+  top: 25px;
   width: 288px;
   z-index: 10;
 }
@@ -547,7 +547,8 @@ body {
 .delivery-method__price-shipping:hover {
   cursor: pointer;
 }
-.delivery-method__price-shipping:hover .delivery-method__price-shipping_free_info {
+.delivery-method__price-shipping:hover
+  .delivery-method__price-shipping_free_info {
   display: flex;
   -webkit-animation: fadeInFromNone 0.5s ease-out;
   -moz-animation: fadeInFromNone 0.5s ease-out;
@@ -655,6 +656,16 @@ body {
   line-height: 24px;
   transition: 0.2s ease all;
   color: #a0a0a4;
+}
+.error-label {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #f55123;
+}
+.recipient__input_invalid {
+  color: #f55123;
+  border-bottom: 1px solid #f55123;
 }
 .input-subscription {
   font-weight: 400;
