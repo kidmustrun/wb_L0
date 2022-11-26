@@ -163,6 +163,7 @@ body {
   display: inline-flex;
   align-items: center;
   user-select: none;
+  cursor: pointer;
 }
 
 .checkbox + label::before {
@@ -179,6 +180,7 @@ body {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 50% 50%;
+  cursor: pointer;
 }
 
 .checkbox:checked + label::before {
@@ -735,6 +737,7 @@ body {
   color: #ffffff;
   padding: 12px 32px;
   margin: 24px 0 8px 0;
+  cursor: pointer;
 }
 .footer {
   font-weight: 400;
