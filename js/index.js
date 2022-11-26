@@ -2,15 +2,23 @@ var checkboxes = document.getElementsByClassName("item_check");
 
 var counts = document.getElementsByClassName("item_count");
 var items__discount = document.getElementsByClassName("item-price__discount");
-var items__discount_array = [...items__discount].filter(
-  (item) => item.tagName === "SPAN"
-);
+var items__discount_array = [...items__discount].filter(function (
+  element,
+  index,
+  array
+) {
+  return index % 2 === 0;
+});
 var items__nodiscount = document.getElementsByClassName(
   "item-price__nodiscount"
 );
-var items__nodiscount_array = [...items__nodiscount].filter(
-  (item) => item.tagName === "SPAN"
-);
+var items__nodiscount_array = [...items__nodiscount].filter(function (
+  element,
+  index,
+  array
+) {
+  return index % 2 === 0;
+});
 var pay_now = document.getElementById("pay_now");
 var order_creation_button = document.getElementById("order_creation_button");
 var errors = document.getElementsByClassName("error-label");
@@ -44,6 +52,7 @@ function prettify(num) {
 function calculatePrices() {
   let prices_discount = [];
   for (let i = 0; i < items__discount_array.length; i++) {
+    console.log(items__discount_array);
     prices_discount.push(
       items__discount_array[i].innerHTML.replace(/\D/g, "") / counts[i].value
     );
@@ -249,7 +258,6 @@ for (let input of inputs) {
   });
 }
 function validateInput(input) {
-  console.log(input.value);
   let i = inputs_array.indexOf(input);
   switch (input.id) {
     case "name":

@@ -431,10 +431,12 @@ body {
 }
 .item-price_for-mobile {
   display: none;
+  position: relative;
 }
 .item-price {
   width: 25%;
   text-align: right;
+  position: relative;
 }
 .item-price__discount {
   font-weight: 700;
@@ -449,6 +451,51 @@ body {
   color: #a0a0a4;
   text-decoration: line-through;
   border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
+}
+.item-price__nodiscount_info {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 58px;
+  background: #ffffff;
+  border-radius: 8px;
+  color: #000;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 11px 16px;
+  gap: 8px;
+  font-size: 13px;
+  line-height: 16px;
+}
+.item-price__nodiscount_info table {
+  border-collapse: collapse;
+}
+.item-price__nodiscount_info table tr td {
+  vertical-align: top;
+  white-space: nowrap;
+  border: 0px solid transparent;
+  background-clip: padding-box;
+}
+.item-price__nodiscount_info table tr:last-child td{
+  border-top-width: 4px;
+}
+.item-price__nodiscount_info table tr td:first-child {
+  text-align: left;
+  color: #a0a0a4;
+  border-right-width: 4px;
+}
+.item-price__nodiscount_info table tr td:last-child {
+  text-align: right;
+}
+.item-price__nodiscount:hover {
+  cursor: pointer;
+}
+.item-price__nodiscount:hover + .item-price__nodiscount_info {
+  display: flex;
+  -webkit-animation: fadeInFromNone 0.5s ease-out;
+  -moz-animation: fadeInFromNone 0.5s ease-out;
+  -o-animation: fadeInFromNone 0.5s ease-out;
+  animation: fadeInFromNone 0.5s ease-out;
 }
 .delivery-method {
   background: #ffffff;
@@ -846,6 +893,10 @@ body {
   .item-price_for-mobile .item-price__nodiscount {
     font-size: 13px;
     line-height: 16px;
+  }
+  .item-price__nodiscount_info {
+    top: 28px;
+    padding: 10px 16px;
   }
   .card-item__size {
     display: none;
