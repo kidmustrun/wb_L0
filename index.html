@@ -530,7 +530,7 @@
         <div class="delivery-method">
           <div class="delivery-method__heading">
             <h2 class="heading_2">Способ доставки</h2>
-            <span class="text_magenta">Изменить</span>
+            <a class="text_magenta" href="#openModalDeliveryMethod">Изменить</a>
           </div>
           <div class="delivery-method__row">
             <div class="delivery-method__col-30">
@@ -579,20 +579,23 @@
             <img
               src="assets/price shipping.svg"
               alt="Price shipping check mark"
-            /><div class="delivery-method__price-shipping_container">Обратная доставка товаров на склад при отказе — 
-            <div class="delivery-method__price-shipping_free">бесплатно</div>            <div class="delivery-method__price-shipping_free_info">
-              <span
-                >Если товары вам не подойдут, мы вернем их обратно на склад —
-                это бесплатно</span
-              >
-            </div></div>
-
+            />
+            <div class="delivery-method__price-shipping_container">
+              Обратная доставка товаров на склад при отказе —
+              <div class="delivery-method__price-shipping_free">бесплатно</div>
+              <div class="delivery-method__price-shipping_free_info">
+                <span
+                  >Если товары вам не подойдут, мы вернем их обратно на склад —
+                  это бесплатно</span
+                >
+              </div>
+            </div>
           </div>
         </div>
         <div class="payment-method">
           <div class="payment-method__heading">
             <h2 class="heading_2">Способ оплаты</h2>
-            <span class="text_magenta">Изменить</span>
+            <a class="text_magenta" href="#openModalPaymentMethod">Изменить</a>
           </div>
           <div class="payment-method__cards">
             <div class="payment-method__card">
@@ -702,7 +705,9 @@
         <div class="total__heading total__delivery">
           <h2 class="heading_4">Доставка в пункт выдачи</h2>
           <button class="button_edit">
-            <img src="assets/edit.svg" alt="Edit button" />
+            <a href="#openModalDeliveryMethod"
+              ><img src="assets/edit.svg" alt="Edit button"
+            /></a>
           </button>
         </div>
         <div class="total__span total__delivery">
@@ -716,20 +721,25 @@
             <img
               src="assets/price shipping.svg"
               alt="Price shipping check mark"
-            /><div class="delivery-method__price-shipping_container">Обратная доставка товаров на склад при отказе — 
-            <div class="delivery-method__price-shipping_free">бесплатно</div>            <div class="delivery-method__price-shipping_free_info">
-              <span
-                >Если товары вам не подойдут, мы вернем их обратно на склад —
-                это бесплатно</span
-              >
-            </div></div>
-
+            />
+            <div class="delivery-method__price-shipping_container">
+              Обратная доставка товаров на склад при отказе —
+              <div class="delivery-method__price-shipping_free">бесплатно</div>
+              <div class="delivery-method__price-shipping_free_info">
+                <span
+                  >Если товары вам не подойдут, мы вернем их обратно на склад —
+                  это бесплатно</span
+                >
+              </div>
+            </div>
           </div>
         </div>
         <div class="total__heading total__payment">
           <h2 class="heading_4">Оплата картой</h2>
           <button class="button_edit">
-            <img src="assets/edit.svg" alt="Edit button" />
+            <a href="#openModalPaymentMethod"
+              ><img src="assets/edit.svg" alt="Edit button"
+            /></a>
           </button>
         </div>
         <div class="payment-method__cards total__payment">
@@ -771,6 +781,170 @@
           >
         </div>
       </div>
+      <div id="openModalPaymentMethod" class="modal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title">Способ оплаты</h3>
+              <a href="#close" title="Close" class="close">✖</a>
+            </div>
+            <div class="modal-body">
+              <div class="payment-method__cards">
+                <input
+                  class="custom-radio"
+                  name="color"
+                  type="radio"
+                  id="mir"
+                  value="green"
+                />
+                <label for="mir">
+                  <div class="payment-method__card">
+                    <div class="payment-method__image">
+                      <img src="assets/mir.svg" alt="Card 'Mir'" />
+                    </div>
+                    <span>1234 56•• •••• 1234</span>
+                  </div></label
+                ><br />
+                <input
+                  class="custom-radio"
+                  name="color"
+                  type="radio"
+                  id="visa"
+                  value="green"
+                />
+                <label for="visa">
+                  <div class="payment-method__card">
+                    <div class="payment-method__image">
+                      <img src="assets/visa.svg" alt="Card 'Visa'" />
+                    </div>
+                    <span>1234 56•• •••• 1234</span>
+                  </div></label
+                ><br />
+                <input
+                  class="custom-radio"
+                  name="color"
+                  type="radio"
+                  id="mastercard"
+                  value="green"
+                />
+                <label for="mastercard">
+                  <div class="payment-method__card">
+                    <div class="payment-method__image">
+                      <img
+                        src="assets/mastercard.svg"
+                        alt="Card 'mastercard'"
+                      />
+                    </div>
+                    <span>1234 56•• •••• 1234</span>
+                  </div></label
+                ><br />
+                <input
+                  class="custom-radio"
+                  name="color"
+                  type="radio"
+                  id="maestro"
+                  value="green"
+                />
+                <label for="maestro">
+                  <div class="payment-method__card">
+                    <div class="payment-method__image">
+                      <img src="assets/maestro.svg" alt="Card 'maestro'" />
+                    </div>
+                    <span>1234 56•• •••• 1234</span>
+                  </div></label
+                >
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="modal-button button_magenta">Выбрать</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="openModalDeliveryMethod" class="modal">
+        <div class="modal-dialog" style="width: 500px">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title">Способ доставки</h3>
+              <a href="#close" title="Close" class="close">✖</a>
+            </div>
+            <div class="modal-body">
+              <div class="tabs">
+                <input
+                  type="radio"
+                  name="tab-btn"
+                  id="tab-btn-1"
+                  value=""
+                  checked
+                />
+                <label for="tab-btn-1">В пункт выдачи</label>
+                <input type="radio" name="tab-btn" id="tab-btn-2" value="" />
+                <label for="tab-btn-2">Курьером</label>
+                <div id="content-1"></div>
+                <div id="content-2">
+                  <h4 class="modal-body-title">Мои адреса</h4>
+                  <div class="delivery-method__addresses">
+                    <div class="delivery-method__address">
+                      <input
+                        class="custom-radio"
+                        name="color"
+                        type="radio"
+                        id="adress1"
+                        value="green"
+                      />
+                      <label for="adress1">
+                        Бишкек, улица Табышалиева, 57</label
+                      >
+                      <img
+                      class="button_delete"
+                      src="assets/delete_cart.svg"
+                      alt="Delete item"
+                    />
+                    </div>
+                    <div class="delivery-method__address">
+                      <input
+                        class="custom-radio"
+                        name="color"
+                        type="radio"
+                        id="adress2"
+                        value="green"
+                      />
+                      <label for="adress2">
+                        Бишкек, улица Жукеева-Пудовкина, 77/1</label
+                      >
+                      <img
+                      class="button_delete"
+                      src="assets/delete_cart.svg"
+                      alt="Delete item"
+                    />
+                    </div>
+                    <div class="delivery-method__address">
+                      <input
+                        class="custom-radio"
+                        name="color"
+                        type="radio"
+                        id="adress3"
+                        value="green"
+                      />
+                      <label for="adress3">
+                        Бишкек, микрорайон Джал, улица Ахунбаева Исы, 67/1</label
+                      >
+                      <img
+                      class="button_delete"
+                      src="assets/delete_cart.svg"
+                      alt="Delete item"
+                    />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="modal-button button_magenta">Выбрать</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <footer class="footer">
       <span>© 2022 ООО «Товары и точка»</span>
@@ -778,12 +952,12 @@
     <nav>
       <div class="menu-links__link">
         <a href="#">
-          <img src="assets/main_mobile.svg" alt="Link main"/>
+          <img src="assets/main_mobile.svg" alt="Link main" />
         </a>
       </div>
       <div class="menu-links__link">
         <a href="#">
-          <img src="assets/catalog_mobile.svg" alt="Link catalog"/>
+          <img src="assets/catalog_mobile.svg" alt="Link catalog" />
         </a>
       </div>
       <div class="menu-links__link">
@@ -794,12 +968,12 @@
       </div>
       <div class="menu-links__link">
         <a href="#">
-          <img src="assets/favorites_mobile.svg" alt="Link favorites"/>
+          <img src="assets/favorites_mobile.svg" alt="Link favorites" />
         </a>
       </div>
       <div class="menu-links__link">
         <a href="#">
-          <img src="assets/profile_mobile.svg" alt="Link profile"/>
+          <img src="assets/profile_mobile.svg" alt="Link profile" />
         </a>
       </div>
     </nav>

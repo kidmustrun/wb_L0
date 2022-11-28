@@ -58,7 +58,6 @@ function prettify(num) {
 function calculatePrices() {
   let prices_discount = [];
   for (let i = 0; i < items__discount_array.length; i++) {
-    console.log(items__discount_array);
     prices_discount.push(
       items__discount_array[i].innerHTML.replace(/\D/g, "") / counts[i].value
     );

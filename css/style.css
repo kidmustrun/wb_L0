@@ -513,6 +513,8 @@ body {
   font-size: 16px;
   line-height: 24px;
   color: #cb11ab;
+  text-decoration: none;
+  cursor: pointer;
 }
 .delivery-method__row {
   display: flex;
@@ -808,6 +810,208 @@ body {
 }
 nav {
   display: none;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(5, 0, 10, 0.3);
+  z-index: 1050;
+  opacity: 0;
+  -webkit-transition: opacity 200ms ease-in;
+  -moz-transition: opacity 200ms ease-in;
+  transition: opacity 200ms ease-in;
+  pointer-events: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.modal:target {
+  opacity: 1;
+  pointer-events: auto;
+  overflow-y: auto;
+}
+
+.modal-dialog {
+  position: relative;
+  width: 400px;
+  margin: auto;
+}
+.modal-content {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  background: #ffffff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  outline: 0;
+  max-height: 400px;
+}
+.modal-header {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 16px 24px 0px 24px;
+}
+.modal-title {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+}
+.modal-body-title {
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 16px;
+}
+.modal-button {
+  width: 50%;
+  padding: 7.5px 48px;
+}
+.close {
+  float: right;
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  color: #a0a0a4;
+  opacity: 0.5;
+  text-decoration: none;
+}
+/* свойства для кнопки "Закрыть" при нахождении её в фокусе или наведении */
+.close:focus,
+.close:hover {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0.75;
+}
+/* свойства для блока, содержащего основное содержимое окна */
+.modal-body {
+  position: relative;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 13px 24px 24px 24px;
+  overflow: auto;
+  height: 50vh;
+}
+.modal-footer {
+  padding: 0 24px 24px 24px;
+}
+/* для элемента input c type="radio" */
+.custom-radio {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+/* для элемента label связанного с .custom-radio */
+.custom-radio + label {
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+}
+/* создание в label псевдоэлемента  before со следующими стилями */
+.custom-radio + label::before {
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  flex-grow: 0;
+  border: 1px solid #adb5bd;
+  border-radius: 50%;
+  margin-right: 0.5em;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 50% 50%;
+}
+
+/* стили для активной радиокнопки (при нажатии на неё) */
+.custom-radio:not(:disabled):active + label::before {
+  background-color: #cb11ab;
+  border-color: #cb11ab;
+}
+/* стили для радиокнопки, находящейся в состоянии checked */
+.custom-radio:checked + label::before {
+  border-color: #cb11ab;
+  background-color: #cb11ab;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+}
+.tabs > input[type="radio"] {
+  display: none;
+}
+
+.tabs > input[type="radio"]:checked + label {
+  border: 2px solid #cb11ab;
+  border-radius: 24px;
+}
+
+.tabs > div {
+  /* скрыть контент по умолчанию */
+  display: none;
+}
+
+/* отобразить контент, связанный с вабранной радиокнопкой (input type="radio") */
+#tab-btn-1:checked ~ #content-1,
+#tab-btn-2:checked ~ #content-2,
+#tab-btn-3:checked ~ #content-3 {
+  display: block;
+}
+
+.tabs > label {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  background: #ffffff;
+  border: 2px solid rgba(203, 17, 171, 0.15);
+  border-radius: 24px;
+  padding: 9px 0 11px 0;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 16px;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out;
+  margin-left: 8px;
+  cursor: pointer;
+  margin-bottom: 26px;
+  width: calc(50% - 8px);
+}
+
+.tabs > label:first-of-type {
+  margin-left: 0;
+}
+.delivery-method__address {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10.5px;
+}
+.delivery-method__address:first-child {
+  margin-top: 12px;
 }
 @media screen and (max-width: 960px) {
   .container {
