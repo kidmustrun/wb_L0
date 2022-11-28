@@ -883,7 +883,7 @@ nav {
   line-height: 16px;
 }
 .modal-button {
-  width: 50%;
+  width: 40%;
   padding: 7.5px 48px;
 }
 .close {
@@ -1001,6 +1001,9 @@ nav {
 .tabs > label:first-of-type {
   margin-left: 0;
 }
+.delivery-method__addresses{
+  overflow: auto;
+}
 .delivery-method__address {
   font-weight: 400;
   font-size: 16px;
@@ -1012,6 +1015,23 @@ nav {
 }
 .delivery-method__address:first-child {
   margin-top: 12px;
+}
+.delivery-method__address_point {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.delivery-method__address_point-rating {
+  margin-right: 8.5px;
+  color: black;
+}
+.delivery-method__address_point-text {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  color: #a0a0a4;
+  margin-left: 20px;
+  vertical-align: middle;
 }
 @media screen and (max-width: 960px) {
   .container {
@@ -1273,4 +1293,19 @@ nav {
     top: 5px;
     right: -5px;
   }
+  .modal-dialog {
+    height: 100vh;
+  }
+  .modal-content {
+    width: 100vw;
+    height: 100%;
+    max-height: none;
+  }
+  .modal-body {
+    height: 80vh;
+  }
+  .modal-button {
+    width: 100%;
+  }
+
 }
