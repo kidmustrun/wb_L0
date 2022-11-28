@@ -25,9 +25,10 @@ var errors = document.getElementsByClassName("error-label");
 let inputs = document.getElementsByClassName("recipient__input");
 var inputs_array = [...inputs];
 var card_item__titles = document.getElementsByClassName("card-item__title");
+var menu_links__count = document.getElementsByClassName("menu-links__count");
 for (title of card_item__titles) {
-  if (title.innerHTML.length > 45 && window.innerWidth <=576)
-    title.innerHTML = title.innerHTML.substring(0, 45)+ '…';
+  if (title.innerHTML.length > 45 && window.innerWidth <= 576)
+    title.innerHTML = title.innerHTML.substring(0, 45) + "…";
 }
 function selectAllItems(checked) {
   for (let checkbox of checkboxes) {
@@ -123,9 +124,14 @@ function calculateTotalCost() {
   document.getElementById("sum_count").innerHTML =
     sum_count + " " + morph(sum_count);
   if (sum_count) {
-    document.getElementById("menu-links__count").style.display = "block";
-    document.getElementById("menu-links__count").innerHTML = sum_count;
-  } else document.getElementById("menu-links__count").style.display = "none";
+    for (let menu_link__count of menu_links__count) {
+      menu_link__count.style.display = "block";
+      menu_link__count.innerHTML = sum_count;
+    }
+  } else
+    for (let menu_link__count of menu_links__count) {
+      menu_link__count.style.display = "none";
+    }
   changeOrderButtonMessage(pay_now.checked, sum);
 }
 
