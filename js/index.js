@@ -24,6 +24,11 @@ var order_creation_button = document.getElementById("order_creation_button");
 var errors = document.getElementsByClassName("error-label");
 let inputs = document.getElementsByClassName("recipient__input");
 var inputs_array = [...inputs];
+var card_item__titles = document.getElementsByClassName("card-item__title");
+for (title of card_item__titles) {
+  if (title.innerHTML.length > 45 && window.innerWidth <=576)
+    title.innerHTML = title.innerHTML.substring(0, 45)+ '…';
+}
 function selectAllItems(checked) {
   for (let checkbox of checkboxes) {
     checkbox.checked = checked;
