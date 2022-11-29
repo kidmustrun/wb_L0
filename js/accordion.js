@@ -89,12 +89,15 @@ class ItcAccordion {
   toggle(el) {
     if (el.classList.contains("accordion__item_show")) {
       this.hide(el);
+      if(el.classList.contains("accordion__item_show_available")){
       el.firstElementChild.innerHTML = "";
       let sum_count = document.getElementById("sum_count").innerHTML;
       let sum = document.getElementById("sum").innerHTML;
       el.firstElementChild.innerHTML = `${sum_count} · ${sum}`;
+    } 
     } else {
       this.show(el);
+      if(el.classList.contains("accordion__item_show_available")){
       el.firstElementChild.innerHTML = "";
       let sum_checkboxes = 0;
       let checked;
@@ -107,7 +110,7 @@ class ItcAccordion {
       el.firstElementChild.insertAdjacentHTML(
         "afterbegin",
         `<input type="checkbox" class="checkbox" id="select_all" name="select_all" ${checked} onchange="selectAllItems(this.checked)"/><label for="select_all">Выбрать все</label>`
-      );
+      );}
     }
   }
 }

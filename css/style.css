@@ -50,6 +50,7 @@ body {
   font-variant: small-caps;
   color: #ffffff;
   letter-spacing: 0.02em;
+  user-select: none;
 }
 .search-form {
   background: rgba(255, 255, 255, 0.2);
@@ -1275,8 +1276,15 @@ nav {
     right: -24px;
     width: 100vw;
   }
+  .footer{
+    margin-bottom: 56px;
+  }
   nav {
     display: flex;
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    z-index: 10000;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;

@@ -24,6 +24,7 @@ var errors = document.getElementsByClassName("error-label");
 let inputs = document.getElementsByClassName("recipient__input");
 var inputs_array = [...inputs];
 var card_item__titles = document.getElementsByClassName("card-item__title");
+var card_item__titles_array = [...card_item__titles];
 var menu_links__count = document.getElementsByClassName("menu-links__count");
 var payments = document.getElementsByClassName("payment-radio");
 var addresses = document.getElementsByClassName("address-radio");
@@ -40,10 +41,27 @@ var delivery_addresses = document.getElementsByClassName(
   "delivery-method__address_table"
 );
 var tab_buttons = document.getElementsByClassName("tab-btn");
-for (title of card_item__titles) {
+var titles = [];
+for (let title of card_item__titles) {
+  titles.push(title.innerHTML);
   if (title.innerHTML.length > 45 && window.innerWidth <= 576)
     title.innerHTML = title.innerHTML.substring(0, 45) + "…";
 }
+window.addEventListener(
+  "resize",
+  function (event) {
+    for (let i = 0; i < card_item__titles_array.length; i++) {
+      if (
+        card_item__titles_array[i].innerHTML.length > 45 &&
+        window.innerWidth <= 576
+      )
+        card_item__titles_array[i].innerHTML = titles[i].substring(0, 45) + "…";
+      else card_item__titles_array[i].innerHTML = titles[i];
+    }
+  },
+  true
+);
+
 function selectAllItems(checked) {
   for (let checkbox of checkboxes) {
     checkbox.checked = checked;
@@ -170,7 +188,14 @@ function increaseQuantity(elem) {
       +elem.previousElementSibling.value
     )
       elem.style.color = "rgba(0, 0, 0, 0.2)";
-  } else ++elem.previousElementSibling.value;
+  } else if (elem.previousElementSibling.value === 1) {
+    elem.previousElementSibling.previousElementSibling.style.color =
+      "rgba(0, 0, 0, 0.2)";
+    ++elem.previousElementSibling.value;
+  } else {
+    ++elem.previousElementSibling.value;
+    elem.previousElementSibling.previousElementSibling.style.color = "#000000";
+  }
   calculateTotalCost();
 }
 
@@ -182,6 +207,12 @@ function subtractQuantity(elem) {
   }
   if (+elem.nextElementSibling.value === 1)
     elem.style.color = "rgba(0, 0, 0, 0.2)";
+  calculateTotalCost();
+}
+
+function checkQuantity(elem) {
+  if (elem.value === 1)
+    elem.previousElementSibling.style.color = "rgba(0, 0, 0, 0.2)";
   calculateTotalCost();
 }
 const validateEmail = (email) => {
@@ -338,7 +369,7 @@ function selectPayment() {
         "payment-method__card_checked"
       );
       for (let card of cards_checked)
-        card.innerHTML = payment.nextElementSibling.innerHTML;
+        card.innerHTML = payment.nextElementSibling.firstElementChild.innerHTML;
     }
     window.location =
       ("" + window.location).replace(/#[A-Za-z0-9_]*$/, "") + "#close";
@@ -353,7 +384,7 @@ function selectAddress() {
           if (tab_button.checked && tab_button.value == "1") {
             total_address_heading.firstElementChild.innerHTML =
               "Доставка в пункт выдачи";
-          } else if (tab_button.checked && tab_button.value == "2"){
+          } else if (tab_button.checked && tab_button.value == "2") {
             total_address_heading.firstElementChild.innerHTML =
               "Доставка курьером";
           }
@@ -368,7 +399,7 @@ function selectAddress() {
               delivery_method.firstElementChild.innerHTML =
                 "Курьерская доставка";
               delivery_address.lastElementChild.innerHTML = "";
-            } else if (tab_button.checked && tab_button.value == "1"){
+            } else if (tab_button.checked && tab_button.value == "1") {
               delivery_method.firstElementChild.innerHTML = "Пункт выдачи";
               delivery_address.lastElementChild.innerHTML = "";
               let label = address.nextElementSibling;
