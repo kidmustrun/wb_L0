@@ -598,7 +598,7 @@
             <a class="text_magenta" href="#openModalPaymentMethod">Изменить</a>
           </div>
           <div class="payment-method__cards">
-            <div class="payment-method__card">
+            <div class="payment-method__card payment-method__card_checked">
               <div class="payment-method__image">
                 <img src="assets/mir.svg" alt="Card 'Mir'" />
               </div>
@@ -743,7 +743,7 @@
           </button>
         </div>
         <div class="payment-method__cards total__payment">
-          <div class="payment-method__card">
+          <div class="payment-method__card payment-method__card_checked">
             <div class="payment-method__image">
               <img src="assets/mir.svg" alt="Card 'Mir'" />
             </div>
@@ -797,10 +797,11 @@
             <div class="modal-body">
               <div class="payment-method__cards">
                 <input
-                  class="custom-radio"
-                  name="color"
+                  class="custom-radio payment-radio"
                   type="radio"
                   id="mir"
+                  name="payment"
+                  checked
                 />
                 <label for="mir">
                   <div class="payment-method__card">
@@ -811,10 +812,10 @@
                   </div></label
                 ><br />
                 <input
-                  class="custom-radio"
-                  name="color"
+                  class="custom-radio payment-radio"
                   type="radio"
                   id="visa"
+                  name="payment"
                 />
                 <label for="visa">
                   <div class="payment-method__card">
@@ -825,10 +826,10 @@
                   </div></label
                 ><br />
                 <input
-                  class="custom-radio"
-                  name="color"
+                  class="custom-radio payment-radio"
                   type="radio"
                   id="mastercard"
+                  name="payment"
                 />
                 <label for="mastercard">
                   <div class="payment-method__card">
@@ -842,10 +843,10 @@
                   </div></label
                 ><br />
                 <input
-                  class="custom-radio"
-                  name="color"
+                  class="custom-radio payment-radio"
                   type="radio"
                   id="maestro"
+                  name="payment"
                 />
                 <label for="maestro">
                   <div class="payment-method__card">
@@ -858,7 +859,7 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button class="modal-button button_magenta">Выбрать</button>
+              <button class="modal-button button_magenta" onclick="selectPayment()">Выбрать</button>
             </div>
           </div>
         </div>

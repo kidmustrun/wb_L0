@@ -884,7 +884,8 @@ nav {
 }
 .modal-button {
   width: 40%;
-  padding: 7.5px 48px;
+  text-align: center;
+  padding: 7.5px 0;
 }
 .close {
   float: right;
@@ -1300,6 +1301,7 @@ nav {
     width: 100vw;
     height: 100%;
     max-height: none;
+    border-radius: 0px;
   }
   .modal-body {
     height: 80vh;

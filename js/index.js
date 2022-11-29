@@ -1,5 +1,4 @@
 var checkboxes = document.getElementsByClassName("item_check");
-
 var counts = document.getElementsByClassName("item_count");
 var items__discount = document.getElementsByClassName("item-price__discount");
 var items__discount_array = [...items__discount].filter(function (
@@ -26,6 +25,9 @@ let inputs = document.getElementsByClassName("recipient__input");
 var inputs_array = [...inputs];
 var card_item__titles = document.getElementsByClassName("card-item__title");
 var menu_links__count = document.getElementsByClassName("menu-links__count");
+var payments = document.getElementsByClassName("payment-radio");
+console.log(payments);
+
 for (title of card_item__titles) {
   if (title.innerHTML.length > 45 && window.innerWidth <= 576)
     title.innerHTML = title.innerHTML.substring(0, 45) + "…";
@@ -314,6 +316,18 @@ function validateInput(input) {
           input.classList.remove("recipient__input_invalid");
         }
       break;
+  }
+}
+
+function selectPayment() {
+  for (let payment of payments) {
+    if (payment.checked) {
+      let cards_checked = document.getElementsByClassName("payment-method__card_checked")
+      for (let card of cards_checked)
+        card.innerHTML = payment.nextElementSibling.innerHTML;
+    }
+    window.location = (""+window.location).replace(/#[A-Za-z0-9_]*$/,'')+"#close";
+    document.body.style.overflowY = "auto";
   }
 }
 
