@@ -26,8 +26,20 @@ var inputs_array = [...inputs];
 var card_item__titles = document.getElementsByClassName("card-item__title");
 var menu_links__count = document.getElementsByClassName("menu-links__count");
 var payments = document.getElementsByClassName("payment-radio");
-console.log(payments);
-
+var addresses = document.getElementsByClassName("address-radio");
+var total_address_headings = document.getElementsByClassName(
+  "total__delivery total__heading"
+);
+var total_address_spans = document.getElementsByClassName(
+  "total__delivery total__span"
+);
+var delivery_methods = document.getElementsByClassName(
+  "delivery-method__method"
+);
+var delivery_addresses = document.getElementsByClassName(
+  "delivery-method__address_table"
+);
+var tab_buttons = document.getElementsByClassName("tab-btn");
 for (title of card_item__titles) {
   if (title.innerHTML.length > 45 && window.innerWidth <= 576)
     title.innerHTML = title.innerHTML.substring(0, 45) + "…";
@@ -322,11 +334,58 @@ function validateInput(input) {
 function selectPayment() {
   for (let payment of payments) {
     if (payment.checked) {
-      let cards_checked = document.getElementsByClassName("payment-method__card_checked")
+      let cards_checked = document.getElementsByClassName(
+        "payment-method__card_checked"
+      );
       for (let card of cards_checked)
         card.innerHTML = payment.nextElementSibling.innerHTML;
     }
-    window.location = (""+window.location).replace(/#[A-Za-z0-9_]*$/,'')+"#close";
+    window.location =
+      ("" + window.location).replace(/#[A-Za-z0-9_]*$/, "") + "#close";
+    document.body.style.overflowY = "auto";
+  }
+}
+function selectAddress() {
+  for (let address of addresses) {
+    if (address.checked) {
+      for (let total_address_heading of total_address_headings)
+        for (let tab_button of tab_buttons)
+          if (tab_button.checked && tab_button.value == "1") {
+            total_address_heading.firstElementChild.innerHTML =
+              "Доставка в пункт выдачи";
+          } else if (tab_button.checked && tab_button.value == "2"){
+            total_address_heading.firstElementChild.innerHTML =
+              "Доставка курьером";
+          }
+
+      for (let total_address_span of total_address_spans)
+        total_address_span.innerHTML = address.nextElementSibling.innerHTML;
+
+      for (let delivery_address of delivery_addresses) {
+        for (let delivery_method of delivery_methods)
+          for (let tab_button of tab_buttons)
+            if (tab_button.checked && tab_button.value == "2") {
+              delivery_method.firstElementChild.innerHTML =
+                "Курьерская доставка";
+              delivery_address.lastElementChild.innerHTML = "";
+            } else if (tab_button.checked && tab_button.value == "1"){
+              delivery_method.firstElementChild.innerHTML = "Пункт выдачи";
+              delivery_address.lastElementChild.innerHTML = "";
+              let label = address.nextElementSibling;
+              let rating = label.nextElementSibling;
+              rating.style.margin = "0";
+              delivery_address.lastElementChild.insertAdjacentHTML(
+                "afterbegin",
+                rating.outerHTML
+              );
+            }
+
+        delivery_address.firstElementChild.innerHTML =
+          address.nextElementSibling.innerHTML;
+      }
+    }
+    window.location =
+      ("" + window.location).replace(/#[A-Za-z0-9_]*$/, "") + "#close";
     document.body.style.overflowY = "auto";
   }
 }

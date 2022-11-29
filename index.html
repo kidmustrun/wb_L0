@@ -533,10 +533,10 @@
             <a class="text_magenta" href="#openModalDeliveryMethod">Изменить</a>
           </div>
           <div class="delivery-method__row">
-            <div class="delivery-method__col-30">
+            <div class="delivery-method__col-30 delivery-method__method">
               <p>Пункт выдачи</p>
             </div>
-            <div class="delivery-method__col-70">
+            <div class="delivery-method__col-70 delivery-method__address_table">
               <p>Бишкек, улица Ахматбека Суюмбаева, 12/1</p>
               <p class="text-small">
                 <img src="assets/star.svg" alt="Rating" />4.99 Ежедневно с 10 до
@@ -713,7 +713,7 @@
         <div class="total__span total__delivery">
           <span>Бишкек, улица Ахматбека Суюмбаева, 12/1</span>
         </div>
-        <div class="total__span total__delivery">
+        <div class="total__span">
           <span class="total__text_magenta">5-8 фев</span>
         </div>
         <div class="card_grey total__span">
@@ -883,11 +883,12 @@
                   type="radio"
                   name="tab-btn"
                   id="tab-btn-1"
-                  value=""
+                  value="1"
                   checked
+                  class="tab-btn"
                 />
                 <label for="tab-btn-1">В пункт выдачи</label>
-                <input type="radio" name="tab-btn" id="tab-btn-2" value="" />
+                <input type="radio" name="tab-btn" id="tab-btn-2" value="2" class="tab-btn" />
                 <label for="tab-btn-2">Курьером</label>
                 <div id="content-1">
                   <h4 class="modal-body-title">Мои адреса</h4>
@@ -895,8 +896,8 @@
                     <div class="delivery-method__address">
                       <div class="delivery-method__address_point">
                         <input
-                          class="custom-radio"
-                          name="color"
+                          class="custom-radio address-radio"
+                          name="address"
                           type="radio"
                           id="address_point1"
                         />
@@ -907,7 +908,7 @@
                         <p class="delivery-method__address_point-text">
                           <span class="delivery-method__address_point-rating"
                             ><img src="assets/star.svg" alt="Rating" /></span
-                          >Пункт выдачи
+                            >Пункт выдачи
                         </p>
                       </div>
                       <img
@@ -919,8 +920,8 @@
                     <div class="delivery-method__address">
                       <div class="delivery-method__address_point">
                         <input
-                          class="custom-radio"
-                          name="color"
+                          class="custom-radio address-radio"
+                          name="address"
                           type="radio"
                           id="address_point2"
                         />
@@ -943,10 +944,11 @@
                     <div class="delivery-method__address">
                       <div class="delivery-method__address_point">
                         <input
-                          class="custom-radio"
-                          name="color"
+                          class="custom-radio address-radio"
+                          name="address"
                           type="radio"
                           id="address_point3"
+                          checked
                         />
                         <label for="address_point3">
                           г. Бишкек, улица Табышалиева, д. 57</label
@@ -971,8 +973,8 @@
                   <div class="delivery-method__addresses">
                     <div class="delivery-method__address">
                       <input
-                        class="custom-radio"
-                        name="color"
+                        class="custom-radio address-radio"
+                        name="address"
                         type="radio"
                         id="adress1"
                       />
@@ -987,8 +989,8 @@
                     </div>
                     <div class="delivery-method__address">
                       <input
-                        class="custom-radio"
-                        name="color"
+                        class="custom-radio address-radio"
+                        name="address"
                         type="radio"
                         id="adress2"
                       />
@@ -1003,8 +1005,8 @@
                     </div>
                     <div class="delivery-method__address">
                       <input
-                        class="custom-radio"
-                        name="color"
+                        class="custom-radio address-radio"
+                        name="address"
                         type="radio"
                         id="adress3"
                       />
@@ -1023,7 +1025,7 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button class="modal-button button_magenta">Выбрать</button>
+              <button class="modal-button button_magenta" onclick="selectAddress()">Выбрать</button>
             </div>
           </div>
         </div>
