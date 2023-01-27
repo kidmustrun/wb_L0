@@ -42,6 +42,9 @@ var delivery_addresses = document.getElementsByClassName(
 );
 var tab_buttons = document.getElementsByClassName("tab-btn");
 var titles = [];
+
+let images = [];
+
 for (let title of card_item__titles) {
   titles.push(title.innerHTML);
   if (title.innerHTML.length > 45 && window.innerWidth <= 576)
@@ -63,23 +66,63 @@ window.addEventListener(
 );
 
 function selectAllItems(checked) {
-  for (let checkbox of checkboxes) {
+  images = [];
+  for (const [index, checkbox]  of [...checkboxes].entries()) {
     checkbox.checked = checked;
+    if(checkbox.checked){
+      images.push({id: index, img: checkbox.parentElement.querySelector('.card-item__image').children[0]});
+    }
   }
+  showItemsCardsInDeliveryBlock()
   calculateTotalCost();
 }
 
 function selectItem(checked, id) {
+  images = [];
   var select_all = document.getElementById("select_all");
   document.getElementById(id).checked = checked;
   let sum_checkboxes = 0;
-  for (let checkbox of checkboxes) {
-    if (checkbox.checked) sum_checkboxes++;
+  for (const [index, checkbox]  of [...checkboxes].entries()) {
+    if (checkbox.checked) {
+      sum_checkboxes++;
+      images.push({id: index, img: checkbox.parentElement.querySelector('.card-item__image').children[0]});
+
+    };
   }
   sum_checkboxes === checkboxes.length
     ? (select_all.checked = true)
     : (select_all.checked = false);
+  
+  showItemsCardsInDeliveryBlock()
   calculateTotalCost();
+}
+
+function showItemsCardsInDeliveryBlock(){
+  let delivery_block = document.querySelector('.delivery-method__col-70_images');
+  let date_block = document.querySelector('.delivery-method__col-30_date');
+  delivery_block.innerHTML = ""
+  date_block.innerHTML = ""
+  for (image of images){
+    if(counts[image.id].value)
+      if(counts[image.id].value != 1)
+    delivery_block.insertAdjacentHTML('beforeend', `<div class="delivery-method__col-70_image">
+    ${image.img.outerHTML}
+    <div class="delivery-method__col-70_count">${counts[image.id].value}</div>
+  </div> `);
+  else delivery_block.insertAdjacentHTML('beforeend', `<div class="delivery-method__col-70_image">
+  ${image.img.outerHTML}
+</div> `);
+  }
+  let date = new Date();
+  monthA = 'января,февраля,марта,апреля,мая,июня,июля,августа,сентября,октября,ноября,декабря'.split(',');
+  
+  if(!images[0]){
+    date_block.innerHTML = ""
+    delivery_block.innerHTML = ""
+  }
+  else{
+    date_block.insertAdjacentHTML('beforeend', `<p>${date.getDate()+1}—${date.getDate()+2} ${monthA[date.getMonth()]}</p>`)
+  }
 }
 
 function prettify(num) {
@@ -196,6 +239,7 @@ function increaseQuantity(elem) {
     ++elem.previousElementSibling.value;
     elem.previousElementSibling.previousElementSibling.style.color = "#000000";
   }
+  showItemsCardsInDeliveryBlock()
   calculateTotalCost();
 }
 
@@ -207,12 +251,14 @@ function subtractQuantity(elem) {
   }
   if (+elem.nextElementSibling.value === 1)
     elem.style.color = "rgba(0, 0, 0, 0.2)";
+  showItemsCardsInDeliveryBlock()
   calculateTotalCost();
 }
 
 function checkQuantity(elem) {
   if (elem.value === 1)
     elem.previousElementSibling.style.color = "rgba(0, 0, 0, 0.2)";
+  showItemsCardsInDeliveryBlock()
   calculateTotalCost();
 }
 const validateEmail = (email) => {
