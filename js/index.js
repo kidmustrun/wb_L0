@@ -126,7 +126,7 @@ function showItemsCardsInDeliveryBlock(){
     date_block.insertAdjacentHTML('beforeend', `<p>1—2 ${monthA[date.getMonth()+1]}</p>`)
     else if (date.getDate()+1 == lastDayOfMonth.getDate())
     date_block.insertAdjacentHTML('beforeend', `<p>${date.getDate()+1} ${monthA[date.getMonth()]}—1 ${monthA[date.getMonth()+1]}</p>`)
-    else date_block.insertAdjacentHTML('beforeend', `<p>${date.getDate()+1}—${date.getDate()+1} ${monthA[date.getMonth()]}</p>`)
+    else date_block.insertAdjacentHTML('beforeend', `<p>${date.getDate()+1}—${date.getDate()+2} ${monthA[date.getMonth()]}</p>`)
   }
 }
 
